@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشغل الفيديو - MASAR</title>
+    <link rel="stylesheet" href="css/player.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- بيانات تجريبية -->
+    <script>
+        window.defaultCourseData = {
+            courseTitle: "HTML & CSS للمبتدئين",
+            currentStage: "المرحلة 1: أساسيات البرمجة",
+            currentCourse: "دورة HTML & CSS",
+            totalCourseDuration: "4:30:00",
+            videoTitle: "مقدمة إلى HTML - أساسيات بناء صفحات الويب",
+            videoDescription: "في هذا الدرس سنتعرف على أساسيات لغة HTML، كيفية بناء هيكل صفحة الويب، واستخدام العناصر الأساسية مثل العناوين، الفقرات، الروابط، والصور. هذا الدرس هو البوابة الأولى لدخول عالم تطوير الويب.",
+            videoDuration: "30:15",
+            videoLevel: "مبتدئ",
+            viewCount: "1,250",
+            lessonDate: "15 يناير 2024",
+            lessonLevel: "مبتدئ",
+            videoId: "qz0aGYrrlhU",
+            courseProgress: "66%",
+            totalLessons: 3,
+            totalDuration: "1:58:15",
+            completedLessons: 2,
+            notesCount: 3
+        };
+    </script>
+</head>
+<body>
+    <!-- شريط التنقل الجانبي -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="user-profile">
+                <div class="user-avatar-large">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-info">
+                    <h3 id="playerUserName">مرحباً، محمد</h3>
+                    <p class="user-level">
+                        <i class="fas fa-crown"></i>
+                        مبتدئ
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li>
+                <a href="dashboard.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span class="menu-text">لوحة التحكم</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="course-player.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <span class="menu-text">استكمال التعلم</span>
+                </a>
+            </li>
+            <li>
+                <a href="progress.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <span class="menu-text">إحصائيات متقدمة</span>
+                    <span class="menu-badge">جديد</span>
+                </a>
+            </li>
+            <li>
+                <a href="achievements.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <span class="menu-text">إنجازاتي</span>
+                    <span class="menu-badge">5</span>
+                </a>
+            </li>
+            <li>
+                <a href="settings.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <span class="menu-text">الإعدادات</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-stats">
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="stat-info">
+                    <h4 id="playerStreakDays">3</h4>
+                    <p>يوم متتالي</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <div class="stat-info">
+                    <h4 id="playerCompletedVideos">8</h4>
+                    <p>فيديو مكتمل</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar-footer">
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>تسجيل الخروج</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- زر القائمة للموبايل -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="player-main">
+        <!-- الهيدر المحسن -->
+        <header class="player-header">
+            <div class="header-content">
+                <a href="dashboard.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>العودة للرئيسية</span>
+                </a>
+                <div class="course-title">
+                    <h1 id="coursePlayerTitle">HTML & CSS للمبتدئين</h1>
+                    <div class="course-meta">
+                        <span class="meta-item">
+                            <i class="fas fa-layer-group"></i>
+                            <span id="currentStage">المرحلة 1: أساسيات البرمجة</span>
+                        </span>
+                        <span class="meta-item">
+                            <i class="fas fa-book"></i>
+                            <span id="currentCourse">دورة HTML & CSS</span>
+                        </span>
+                        <span class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span id="totalCourseDuration">4:30:00</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-share" id="shareBtn">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    <button class="btn-fullscreen" id="fullscreenBtn">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- محتوى المشغل -->
+        <div class="player-content">
+            <!-- منطقة الفيديو -->
+            <section class="video-section">
+                <!-- مشغل الفيديو المحسن -->
+                <div class="video-player-container">
+                    <div class="video-wrapper">
+                        <div class="video-loading" id="videoLoading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>جاري تحميل الفيديو...</p>
+                        </div>
+                        <iframe 
+                            id="youtubePlayer"
+                            width="100%" 
+                            height="100%" 
+                            src="https://www.youtube.com/embed/qz0aGYrrlhU?rel=0&modestbranding=1"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            title="مشغل الفيديو التعليمي">
+                        </iframe>
+                    </div>
+                    
+                    <div class="video-controls">
+                        <button class="control-btn prev-btn" id="prevBtn">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>السابق</span>
+                        </button>
+                        
+                        <div class="video-info">
+                            <h2 id="videoTitle">مقدمة إلى HTML - أساسيات بناء صفحات الويب</h2>
+                            <div class="video-meta">
+                                <span class="meta-badge" id="videoDuration">
+                                    <i class="fas fa-clock"></i>
+                                    <span>30:15</span>
+                                </span>
+                                <span class="meta-badge" id="videoLevel">
+                                    <i class="fas fa-signal"></i>
+                                    <span>مبتدئ</span>
+                                </span>
+                                <span class="meta-badge" id="videoStatus">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>جاري المشاهدة</span>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <button class="control-btn next-btn" id="nextBtn">
+                            <span>التالي</span>
+                            <i class="fas fa-arrow-left"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- معلومات الفيديو المحسنة -->
+                <div class="video-details">
+                    <div class="details-tabs">
+                        <button class="tab-btn active" data-tab="description" id="descTab">
+                            <i class="fas fa-info-circle"></i>
+                            <span>الوصف</span>
+                        </button>
+                        <button class="tab-btn" data-tab="summary" id="summaryTab">
+                            <i class="fas fa-file-alt"></i>
+                            <span>ملخص</span>
+                        </button>
+                        <button class="tab-btn" data-tab="notes" id="notesTab">
+                            <i class="fas fa-sticky-note"></i>
+                            <span>ملاحظاتي</span>
+                            <span class="notes-count" id="notesCount">3</span>
+                        </button>
+                        <button class="tab-btn" data-tab="resources" id="resourcesTab">
+                            <i class="fas fa-link"></i>
+                            <span>موارد إضافية</span>
+                        </button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="description">
+                            <div class="pane-header">
+                                <h4><i class="fas fa-info-circle"></i> عن هذا الدرس</h4>
+                                <button class="btn-copy" id="copyDescBtn">
+                                    <i class="far fa-copy"></i>
+                                    نسخ
+                                </button>
+                            </div>
+                            <p id="videoDescription" class="lesson-description">
+                                في هذا الدرس سنتعرف على أساسيات لغة HTML، كيفية بناء هيكل صفحة الويب، واستخدام العناصر الأساسية مثل العناوين، الفقرات، الروابط، والصور. هذا الدرس هو البوابة الأولى لدخول عالم تطوير الويب.
+                            </p>
+                            
+                            <div class="lesson-info-grid">
+                                <div class="info-card">
+                                    <div class="info-icon">
+                                        <i class="fas fa-calendar"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <span class="info-label">تاريخ الإضافة</span>
+                                        <strong id="lessonDate">يناير 2024</strong>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-icon">
+                                        <i class="fas fa-eye"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <span class="info-label">المشاهدات</span>
+                                        <strong id="viewCount">1,250</strong>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-icon">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <span class="info-label">المستوى</span>
+                                        <strong id="lessonLevel">مبتدئ</strong>
+                                    </div>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-icon">
+                                        <i class="fas fa-tags"></i>
+                                    </div>
+                                    <div class="info-content">
+                                        <span class="info-label">الوسوم</span>
+                                        <div class="tags-list">
+                                            <span class="tag">HTML</span>
+                                            <span class="tag">مبتدئ</span>
+                                            <span class="tag">برمجة</span>
+                                            <span class="tag">ويب</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="summary">
+                            <div class="pane-header">
+                                <h4><i class="fas fa-file-alt"></i> ملخص الدرس</h4>
+                                <button class="btn-download" id="downloadBtn">
+                                    <i class="fas fa-download"></i>
+                                    تحميل
+                                </button>
+                            </div>
+                            <div id="videoSummary" class="lesson-summary">
+                                <h5>النقاط الرئيسية:</h5>
+                                <ul>
+                                    <li>فهم هيكل صفحة HTML الأساسي</li>
+                                    <li>تعلم استخدام العناوين h1 إلى h6</li>
+                                    <li>إضافة النصوص والفقرات باستخدام p</li>
+                                    <li>إنشاء الروابط مع علامة a</li>
+                                    <li>إضافة الصور باستخدام img</li>
+                                    <li>فهم الفرق بين العناصر المغلقة والمفتوحة</li>
+                                </ul>
+                                
+                                <h5>الكود المهم:</h5>
+                                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;صفحتي الأولى&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;مرحباً بالعالم!&lt;/h1&gt;
+    &lt;p&gt;هذه صفحتي الأولى.&lt;/p&gt;
+    &lt;a href="https://example.com"&gt;زيارة مثال&lt;/a&gt;
+    &lt;img src="image.jpg" alt="وصف الصورة"&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                                
+                                <h5>الواجب:</h5>
+                                <ol>
+                                    <li>أنشئ صفحة HTML بسيطة تحتوي على عنوان وفقرتين</li>
+                                    <li>أضف رابط لموقع خارجي</li>
+                                    <li>أضف صورة مع وصف بديل</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="notes">
+                            <div class="pane-header">
+                                <h4><i class="fas fa-sticky-note"></i> ملاحظاتي</h4>
+                                <button class="save-btn" id="saveNotesBtn">
+                                    <i class="fas fa-save"></i>
+                                    حفظ
+                                </button>
+                            </div>
+                            
+                            <div class="notes-editor">
+                                <textarea 
+                                    id="userNotes" 
+                                    placeholder="اكتب ملاحظاتك هنا...
+• ما فهمته من الدرس
+• النقاط المهمة
+• الأسئلة التي لديك
+• الأفكار لمشاريع مستقبلية"
+                                    rows="6">- HTML هي لغة هيكلة صفحات الويب
+- كل عنصر يبدأ بعلامة &lt;tag&gt; وينتهي ب&lt;/tag&gt;
+- العناصر الأساسية: h1, p, a, img
+- السمة href للروابط، src للصور، alt للوصف البديل</textarea>
+                                <div class="notes-tools">
+                                    <button class="tool-btn" data-format="bold">
+                                        <i class="fas fa-bold"></i>
+                                    </button>
+                                    <button class="tool-btn" data-format="italic">
+                                        <i class="fas fa-italic"></i>
+                                    </button>
+                                    <button class="tool-btn" id="addBulletBtn">
+                                        <i class="fas fa-list-ul"></i>
+                                    </button>
+                                    <span class="char-count" id="charCount">150 حرف</span>
+                                </div>
+                            </div>
+                            
+                            <div class="notes-history" id="notesHistory">
+                                <div class="note-item">
+                                    <div class="note-header">
+                                        <span class="note-date">اليوم، 10:30 ص</span>
+                                        <button class="note-delete"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                    <p class="note-content">HTML تعني لغة ترميز النص التشعبي (HyperText Markup Language)</p>
+                                </div>
+                                <div class="note-item">
+                                    <div class="note-header">
+                                        <span class="note-date">أمس، 3:45 م</span>
+                                        <button class="note-delete"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                    <p class="note-content">العناصر المغلقة مثل p تتطلب علامة إغلاق، والعناصر المفتوحة مثل img لا تحتاج</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="resources">
+                            <div class="pane-header">
+                                <h4><i class="fas fa-link"></i> موارد إضافية</h4>
+                            </div>
+                            <div id="resourcesList" class="resources-list">
+                                <a href="https://developer.mozilla.org/ar/docs/Web/HTML" class="resource-item" target="_blank">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <div class="resource-content">
+                                        <h5>دليل HTML على MDN</h5>
+                                        <p>المرجع الرسمي والشامل للغة HTML من موزيلا</p>
+                                        <span class="resource-type">مستندات</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://www.w3schools.com/html/" class="resource-item" target="_blank">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="resource-content">
+                                        <h5>تعلم HTML على W3Schools</h5>
+                                        <p>دروس تفاعلية وأمثلة عملية مع محرر مباشر</p>
+                                        <span class="resource-type">دروس</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://htmlreference.io/" class="resource-item" target="_blank">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    <div class="resource-content">
+                                        <h5>مرجع HTML</h5>
+                                        <p>دليل مرئي لجميع عناصر HTML مع أمثلة</p>
+                                        <span class="resource-type">مرجع</span>
+                                    </div>
+                                </a>
+                                
+                                <a href="https://validator.w3.org/" class="resource-item" target="_blank">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="resource-content">
+                                        <h5>مدقق HTML</h5>
+                                        <p>أداة للتحقق من صحة كود HTML الخاص بك</p>
+                                        <span class="resource-type">أداة</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- القائمة الجانبية للدروس -->
+            <aside class="lessons-sidebar">
+                <div class="sidebar-header">
+                    <h3>
+                        <i class="fas fa-list-ol"></i>
+                        <span>دروس هذا الكورس</span>
+                    </h3>
+                    <div class="course-progress">
+                        <div class="progress-info">
+                            <span>التقدم</span>
+                            <span id="courseProgressText">66%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="courseProgressFill" style="width: 66%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lessons-list" id="lessonsList">
+                    <div class="lesson-item completed" data-video-id="qz0aGYrrlhU" data-lesson="1">
+                        <div class="lesson-order">1</div>
+                        <div class="lesson-info">
+                            <h4>مقدمة إلى HTML</h4>
+                            <div class="lesson-meta">
+                                <span><i class="fas fa-clock"></i> 30:15</span>
+                                <span class="status completed">مكتمل</span>
+                            </div>
+                        </div>
+                        <button class="play-lesson">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="lesson-item current" data-video-id="dD2EISBDjWM" data-lesson="2">
+                        <div class="lesson-order">2</div>
+                        <div class="lesson-info">
+                            <h4>أساسيات CSS</h4>
+                            <div class="lesson-meta">
+                                <span><i class="fas fa-clock"></i> 45:30</span>
+                                <span class="status current">جاري المشاهدة</span>
+                            </div>
+                        </div>
+                        <button class="play-lesson">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="lesson-item" data-video-id="y3UH2gAhwPI" data-lesson="3">
+                        <div class="lesson-order">3</div>
+                        <div class="lesson-info">
+                            <h4>التصميم المتجاوب</h4>
+                            <div class="lesson-meta">
+                                <span><i class="fas fa-clock"></i> 42:30</span>
+                                <span class="status pending">قيد الانتظار</span>
+                            </div>
+                        </div>
+                        <button class="play-lesson">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="lesson-item" data-video-id="abc123def" data-lesson="4">
+                        <div class="lesson-order">4</div>
+                        <div class="lesson-info">
+                            <h4>نماذج HTML</h4>
+                            <div class="lesson-meta">
+                                <span><i class="fas fa-clock"></i> 35:20</span>
+                                <span class="status pending">قيد الانتظار</span>
+                            </div>
+                        </div>
+                        <button class="play-lesson">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="lesson-item" data-video-id="xyz789ghi" data-lesson="5">
+                        <div class="lesson-order">5</div>
+                        <div class="lesson-info">
+                            <h4>مشروع عملي</h4>
+                            <div class="lesson-meta">
+                                <span><i class="fas fa-clock"></i> 25:00</span>
+                                <span class="status pending">قيد الانتظار</span>
+                            </div>
+                        </div>
+                        <button class="play-lesson">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="sidebar-footer">
+                    <div class="lesson-stats">
+                        <div class="stat">
+                            <i class="fas fa-video"></i>
+                            <div>
+                                <h4 id="totalLessons">5</h4>
+                                <small>درس</small>
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4 id="totalDuration">2:58:15</h4>
+                                <small>الساعات</small>
+                            </div>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4 id="completedLessons">2</h4>
+                                <small>مكتمل</small>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-mark-complete" id="markCompleteBtn">
+                        <i class="fas fa-flag-checkered"></i>
+                        إكمال الكورس
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- الإشعارات -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Shortcuts Help -->
+    <div class="shortcuts-help" id="shortcutsHelp">
+        <div class="shortcuts-header">
+            <h4><i class="fas fa-keyboard"></i> اختصارات لوحة المفاتيح</h4>
+            <button class="close-help" id="closeHelpBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul>
+            <li><kbd>→</kbd> أو <kbd>D</kbd>: الدرس التالي</li>
+            <li><kbd>←</kbd> أو <kbd>A</kbd>: الدرس السابق</li>
+            <li><kbd>Space</kbd>: تشغيل/إيقاف الفيديو</li>
+            <li><kbd>F</kbd>: ملء الشاشة</li>
+            <li><kbd>M</kbd>: كتم/إلغاء كتم الصوت</li>
+            <li><kbd>1-4</kbd>: التبديل بين التبويبات</li>
+            <li><kbd>Ctrl+S</kbd>: حفظ الملاحظات</li>
+            <li><kbd>Esc</kbd>: إغلاق النافذة</li>
+        </ul>
+        <div class="shortcuts-footer">
+            <small>اضغط <kbd>?</kbd> لإظهار/إخفاء هذه القائمة</small>
+        </div>
+    </div>
+
+    <!-- JavaScript الأساسي (مبدئي) -->
+    <script>
+        // تهيئة البيانات الأساسية
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحديث البيانات من localStorage إن وجدت
+            const userData = JSON.parse(localStorage.getItem('userData')) || {};
+            if (userData.name) {
+                document.getElementById('playerUserName').textContent = `مرحباً، ${userData.name}`;
+            }
+            
+            // تحميل تقدم المستخدم
+            const userProgress = JSON.parse(localStorage.getItem('userProgress')) || {
+                streakDays: 3,
+                completedVideos: 8
+            };
+            
+            document.getElementById('playerStreakDays').textContent = userProgress.streakDays;
+            document.getElementById('playerCompletedVideos').textContent = userProgress.completedVideos;
+            
+            // تهيئة الأحداث الأساسية
+            initBasicEvents();
+            
+            // إخفاء شاشة التحميل بعد 2 ثانية
+            setTimeout(() => {
+                const loading = document.getElementById('videoLoading');
+                if (loading) loading.style.display = 'none';
+            }, 2000);
+        });
+        
+        function initBasicEvents() {
+            // زر تسجيل الخروج
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                if (confirm('هل تريد تسجيل الخروج؟')) {
+                    localStorage.removeItem('userData');
+                    window.location.href = 'index.html';
+                }
+            });
+            
+            // زر المشاركة
+            document.getElementById('shareBtn').addEventListener('click', function() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: document.getElementById('videoTitle').textContent,
+                        text: 'شاهد هذا الدرس التعليمي على منصة مسار',
+                        url: window.location.href
+                    });
+                } else {
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        showNotification('تم نسخ رابط الدرس إلى الحافظة ✓');
+                    });
+                }
+            });
+            
+            // زر ملء الشاشة
+            document.getElementById('fullscreenBtn').addEventListener('click', function() {
+                const player = document.getElementById('youtubePlayer');
+                if (!document.fullscreenElement) {
+                    if (player.requestFullscreen) {
+                        player.requestFullscreen();
+                    }
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    }
+                }
+            });
+            
+            // أزرار التنقل بين الدروس
+            document.getElementById('prevBtn').addEventListener('click', function() {
+                const currentLesson = document.querySelector('.lesson-item.current');
+                const prevLesson = currentLesson ? currentLesson.previousElementSibling : null;
+                
+                if (prevLesson && prevLesson.classList.contains('lesson-item')) {
+                    switchToLesson(prevLesson);
+                    showNotification('الانتقال إلى الدرس السابق');
+                } else {
+                    showNotification('هذا هو أول درس في الكورس');
+                }
+            });
+            
+            document.getElementById('nextBtn').addEventListener('click', function() {
+                const currentLesson = document.querySelector('.lesson-item.current');
+                const nextLesson = currentLesson ? currentLesson.nextElementSibling : null;
+                
+                if (nextLesson && nextLesson.classList.contains('lesson-item')) {
+                    switchToLesson(nextLesson);
+                    showNotification('الانتقال إلى الدرس التالي');
+                } else {
+                    showNotification('هذا هو آخر درس في الكورس');
+                }
+            });
+            
+            // التبديل بين التبويبات
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // إزالة النشاط من جميع الأزرار
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    // إضافة النشاط للزر المضغوط
+                    this.classList.add('active');
+                    
+                    // إخفاء جميع المحتويات
+                    document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+                    // إظهار المحتوى المطلوب
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // زر نسخ الوصف
+            document.getElementById('copyDescBtn').addEventListener('click', function() {
+                const description = document.getElementById('videoDescription').textContent;
+                navigator.clipboard.writeText(description).then(() => {
+                    showNotification('تم نسخ الوصف إلى الحافظة ✓');
+                });
+            });
+            
+            // زر حفظ الملاحظات
+            document.getElementById('saveNotesBtn').addEventListener('click', function() {
+                const notes = document.getElementById('userNotes').value;
+                localStorage.setItem('userNotes', notes);
+                showNotification('تم حفظ الملاحظات ✓');
+            });
+            
+            // زر إكمال الكورس
+            document.getElementById('markCompleteBtn').addEventListener('click', function() {
+                if (confirm('هل أنت متأكد من إكمال هذا الكورس؟')) {
+                    // تحديث التقدم في localStorage
+                    const progress = JSON.parse(localStorage.getItem('userProgress')) || {};
+                    progress.completedCourses = (progress.completedCourses || 0) + 1;
+                    progress.completedVideos = (progress.completedVideos || 0) + 5; // 5 دروس في هذا الكورس
+                    localStorage.setItem('userProgress', JSON.stringify(progress));
+                    
+                    showNotification('مبروك! لقد أكملت هذا الكورس بنجاح 🎉');
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 2000);
+                }
+            });
+            
+            // تشغيل الدرس من القائمة
+            document.querySelectorAll('.play-lesson').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const lessonItem = this.closest('.lesson-item');
+                    switchToLesson(lessonItem);
+                });
+            });
+            
+            // تحديث عداد الأحرف في الملاحظات
+            document.getElementById('userNotes').addEventListener('input', function() {
+                const count = this.value.length;
+                document.getElementById('charCount').textContent = `${count} حرف`;
+            });
+        }
+        
+        function switchToLesson(lessonItem) {
+            // إزالة التحديد الحالي
+            document.querySelectorAll('.lesson-item').forEach(item => {
+                item.classList.remove('current');
+                item.classList.remove('completed');
+            });
+            
+            // إضافة التحديد الجديد
+            lessonItem.classList.add('current');
+            
+            // تحديث فيديو ID
+            const videoId = lessonItem.getAttribute('data-video-id');
+            const lessonNum = lessonItem.getAttribute('data-lesson');
+            updateVideoPlayer(videoId, lessonNum);
+            
+            // تحديث شاشة التحميل
+            const loading = document.getElementById('videoLoading');
+            loading.style.display = 'flex';
+            setTimeout(() => {
+                loading.style.display = 'none';
+            }, 1500);
+        }
+        
+        function updateVideoPlayer(videoId, lessonNum) {
+            const player = document.getElementById('youtubePlayer');
+            player.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`;
+            
+            // تحديث عنوان الدرس (هنا يمكن إضافة بيانات ديناميكية)
+            const lessonTitles = {
+                '1': 'مقدمة إلى HTML - أساسيات بناء صفحات الويب',
+                '2': 'أساسيات CSS - تنسيق صفحات الويب',
+                '3': 'التصميم المتجاوب - مواقع تعمل على جميع الأجهزة',
+                '4': 'نماذج HTML - تفاعل المستخدم مع الموقع',
+                '5': 'مشروع عملي - بناء موقع ويب كامل'
+            };
+            
+            document.getElementById('videoTitle').textContent = lessonTitles[lessonNum] || 'درس جديد';
+        }
+        
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+
+    <script src="js/player.js"></script>
+</body>
+</html>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإحصائيات المتقدمة - MASAR</title>
+    <link rel="stylesheet" href="css/progress.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- شريط التنقل الجانبي -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="user-profile">
+                <div class="user-avatar-large">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-info">
+                    <h3 id="progressUserName">مرحباً، محمد</h3>
+                    <p class="user-level">
+                        <i class="fas fa-crown"></i>
+                        <span id="userLevel">مبتدئ</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li>
+                <a href="dashboard.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span class="menu-text">لوحة التحكم</span>
+                </a>
+            </li>
+            <li>
+                <a href="roadmap.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <span class="menu-text">خطتي التعليمية</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="progress.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <span class="menu-text">إحصائيات متقدمة</span>
+                    <span class="menu-badge">جديد</span>
+                </a>
+            </li>
+            <li>
+                <a href="achievements.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <span class="menu-text">إنجازاتي</span>
+                    <span class="menu-badge">5</span>
+                </a>
+            </li>
+            <li>
+                <a href="settings.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <span class="menu-text">الإعدادات</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-stats">
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="stat-info">
+                    <h4 id="sidebarStreak">3</h4>
+                    <p>يوم متتالي</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h4 id="sidebarHours">12</h4>
+                    <p>ساعة تعلم</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar-footer">
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>تسجيل الخروج</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- زر القائمة للموبايل -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <!-- الهيدر -->
+        <header class="main-header">
+            <div class="header-content">
+                <a href="dashboard.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>العودة للرئيسية</span>
+                </a>
+                <div class="page-title">
+                    <h1><i class="fas fa-chart-line"></i> الإحصائيات المتقدمة</h1>
+                    <p class="page-subtitle">تابع تقدمك التعليمي بالتفصيل وتحليل أدائك</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-export" id="exportBtn">
+                        <i class="fas fa-download"></i>
+                        <span>تصدير البيانات</span>
+                    </button>
+                    <div class="time-filter" id="timeFilter">
+                        <button class="filter-btn active" data-period="week">أسبوع</button>
+                        <button class="filter-btn" data-period="month">شهر</button>
+                        <button class="filter-btn" data-period="year">سنة</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- محتوى الصفحة -->
+        <div class="progress-content">
+            <!-- نظرة سريعة -->
+            <section class="quick-overview-section">
+                <h2 class="section-title">
+                    <i class="fas fa-eye"></i>
+                    نظرة سريعة على أدائك
+                </h2>
+                
+                <div class="overview-cards">
+                    <div class="overview-card primary">
+                        <div class="overview-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3 id="completionRate">35%</h3>
+                            <p>معدل الإنجاز الإجمالي</p>
+                            <div class="overview-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 35%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card success">
+                        <div class="overview-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3 id="currentStreak">3</h3>
+                            <p>يوم متتالي من التعلم</p>
+                            <div class="streak-info">
+                                <span class="streak-best">أفضل: 7 أيام</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card warning">
+                        <div class="overview-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3 id="totalLearningTime">12</h3>
+                            <p>ساعة من التعلم</p>
+                            <div class="time-avg">
+                                <span>معدل يومي: 1.2 ساعة</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-card info">
+                        <div class="overview-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3 id="completedItems">8</h3>
+                            <p>مادة تعليمية مكتملة</p>
+                            <div class="items-breakdown">
+                                <span>3 كورسات، 5 دروس</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم الرسوم البيانية -->
+            <section class="charts-section">
+                <div class="chart-grid">
+                    <!-- التقدم الأسبوعي -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-chart-bar"></i> التقدم الأسبوعي</h3>
+                            <button class="chart-actions" id="weeklyActions">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="weeklyProgressChart"></canvas>
+                        </div>
+                        <div class="chart-footer">
+                            <div class="chart-stats">
+                                <div class="stat">
+                                    <span class="stat-label">ساعات هذا الأسبوع</span>
+                                    <span class="stat-value" id="weeklyHours">8.5</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">زيادة عن الأسبوع الماضي</span>
+                                    <span class="stat-value positive">+15%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- توزيع وقت التعلم -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-pie-chart"></i> توزيع وقت التعلم</h3>
+                            <button class="chart-actions" id="timeDistributionActions">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="timeDistributionChart"></canvas>
+                        </div>
+                        <div class="chart-footer">
+                            <div class="legend">
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background: #667eea"></span>
+                                    <span>المرحلة 1</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background: #10b981"></span>
+                                    <span>المرحلة 2</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color" style="background: #f59e0b"></span>
+                                    <span>المرحلة 3</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- معدل الإنجاز -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-trend-up"></i> معدل الإنجاز</h3>
+                            <button class="chart-actions" id="completionRateActions">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="completionRateChart"></canvas>
+                        </div>
+                        <div class="chart-footer">
+                            <div class="chart-stats">
+                                <div class="stat">
+                                    <span class="stat-label">متوسط الإنجاز اليومي</span>
+                                    <span class="stat-value" id="dailyCompletion">4.2%</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">وقت الإكمال المتوقع</span>
+                                    <span class="stat-value" id="estimatedCompletion">٢ يوليو</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ساعات التعلم -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-calendar-alt"></i> ساعات التعلم</h3>
+                            <button class="chart-actions" id="learningHoursActions">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="learningHoursChart"></canvas>
+                        </div>
+                        <div class="chart-footer">
+                            <div class="chart-stats">
+                                <div class="stat">
+                                    <span class="stat-label">أكثر يوم نشاطاً</span>
+                                    <span class="stat-value" id="mostActiveDay">السبت</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">أفضل وقت للتعلم</span>
+                                    <span class="stat-value" id="bestLearningTime">المساء</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- تحليل الأداء -->
+            <section class="performance-section">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-pie"></i>
+                    تحليل أدائك التعليمي
+                </h2>
+                
+                <div class="performance-grid">
+                    <!-- نقاط القوة -->
+                    <div class="performance-card strength">
+                        <div class="performance-header">
+                            <h3><i class="fas fa-thumbs-up"></i> نقاط القوة</h3>
+                            <div class="performance-badge success">
+                                <i class="fas fa-star"></i>
+                                ممتاز
+                            </div>
+                        </div>
+                        <ul class="performance-list" id="strengthsList">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>الالتزام بالتعلم اليومي</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>سرعة استيعاب المفاهيم الجديدة</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>إكمال التمارين العملية بكفاءة</span>
+                            </li>
+                        </ul>
+                        <div class="performance-footer">
+                            <span class="insight-text">أنت ملتزم جداً برحلة التعلم، استمر على هذا النحو!</span>
+                        </div>
+                    </div>
+
+                    <!-- المجالات للتحسين -->
+                    <div class="performance-card improvement">
+                        <div class="performance-header">
+                            <h3><i class="fas fa-tools"></i> مجالات التحسين</h3>
+                            <div class="performance-badge warning">
+                                <i class="fas fa-bullseye"></i>
+                                يحتاج تحسين
+                            </div>
+                        </div>
+                        <ul class="performance-list" id="improvementsList">
+                            <li>
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>تنظيم وقت التعلم بشكل أفضل</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>مراجعة الدروس السابقة بانتظام</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span>زيادة التركيز أثناء التعلم</span>
+                            </li>
+                        </ul>
+                        <div class="performance-footer">
+                            <span class="insight-text">حاول تقسيم وقت التعلم إلى فترات أقمع مع فترات راحة.</span>
+                        </div>
+                    </div>
+
+                    <!-- التوصيات -->
+                    <div class="performance-card recommendation">
+                        <div class="performance-header">
+                            <h3><i class="fas fa-lightbulb"></i> توصيات ذكية</h3>
+                            <div class="performance-badge info">
+                                <i class="fas fa-robot"></i>
+                                توصية ذكية
+                            </div>
+                        </div>
+                        <ul class="performance-list" id="recommendationsList">
+                            <li>
+                                <i class="fas fa-bullseye"></i>
+                                <span>ابدأ مشروعاً عملياً لتطبيق ما تعلمته</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-bullseye"></i>
+                                <span>شارك معرفتك مع الآخرين لتعزيز التعلم</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-bullseye"></i>
+                                <span>جرب تقنية بومودورو لزيادة الإنتاجية</span>
+                            </li>
+                        </ul>
+                        <div class="performance-footer">
+                            <span class="insight-text">التوصيات بناءً على أنماط تعلمك وأهدافك.</span>
+                        </div>
+                    </div>
+
+                    <!-- الإنجازات -->
+                    <div class="performance-card achievement">
+                        <div class="performance-header">
+                            <h3><i class="fas fa-trophy"></i> إنجازات قريبة</h3>
+                            <div class="performance-badge primary">
+                                <i class="fas fa-flag"></i>
+                                قريب
+                            </div>
+                        </div>
+                        <ul class="performance-list" id="achievementsList">
+                            <li>
+                                <i class="fas fa-medal"></i>
+                                <span>إكمال أول كورس كامل (80% مكتمل)</span>
+                                <div class="achievement-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-medal"></i>
+                                <span>أسبوع من التعلم المتواصل (5/7 أيام)</span>
+                                <div class="achievement-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 71%"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-medal"></i>
+                                <span>10 ساعات تعلم إجمالية (8/10 ساعات)</span>
+                                <div class="achievement-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="performance-footer">
+                            <span class="insight-text">أنت على بعد خطوات قليلة من تحقيق هذه الإنجازات!</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- جدول النشاط -->
+            <section class="activity-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-history"></i>
+                        سجل النشاط التفصيلي
+                    </h2>
+                    <div class="section-actions">
+                        <button class="btn-filter" id="activityFilter">
+                            <i class="fas fa-filter"></i>
+                            <span>تصفية</span>
+                        </button>
+                        <button class="btn-clear" id="clearFilter">
+                            <i class="fas fa-redo"></i>
+                            <span>إعادة تعيين</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity-table-container">
+                    <table class="activity-table">
+                        <thead>
+                            <tr>
+                                <th>التاريخ</th>
+                                <th>النشاط</th>
+                                <th>المدة</th>
+                                <th>الإنجاز</th>
+                                <th>الدرجة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activityTableBody">
+                            <!-- البيانات تظهر هنا من JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="activity-footer">
+                    <div class="pagination">
+                        <button class="page-btn prev" id="prevPage">
+                            <i class="fas fa-chevron-right"></i>
+                            السابق
+                        </button>
+                        <div class="page-numbers">
+                            <span class="page-number active">1</span>
+                            <span class="page-number">2</span>
+                            <span class="page-number">3</span>
+                        </div>
+                        <button class="page-btn next" id="nextPage">
+                            التالي
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                    </div>
+                    <div class="table-summary">
+                        <span>عرض 1-10 من 50 نشاط</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- التوقعات الذكية -->
+            <section class="predictions-section">
+                <h2 class="section-title">
+                    <i class="fas fa-crystal-ball"></i>
+                    توقعات ذكية بناءً على أدائك
+                </h2>
+                
+                <div class="predictions-grid">
+                    <div class="prediction-card">
+                        <div class="prediction-header">
+                            <i class="fas fa-calendar-check"></i>
+                            <h3>تاريخ الإكمال المتوقع</h3>
+                        </div>
+                        <div class="prediction-content">
+                            <div class="prediction-date" id="predictedCompletionDate">٢ يوليو ٢٠٢٤</div>
+                            <div class="prediction-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 35%"></div>
+                                </div>
+                                <div class="progress-labels">
+                                    <span>بدأت</span>
+                                    <span id="completionConfidence">ثقة 85%</span>
+                                    <span>متوقع</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prediction-footer">
+                            <span class="prediction-tip">استمر على نفس الوتيرة لتحقيق الهدف في الوقت المحدد</span>
+                        </div>
+                    </div>
+                    
+                    <div class="prediction-card">
+                        <div class="prediction-header">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>توقع مستوى المهارة</h3>
+                        </div>
+                        <div class="prediction-content">
+                            <div class="skill-level">
+                                <div class="current-level">
+                                    <span>المستوى الحالي:</span>
+                                    <strong id="currentSkillLevel">مبتدئ</strong>
+                                </div>
+                                <div class="predicted-level">
+                                    <span>المتوقع بعد 30 يوم:</span>
+                                    <strong id="predictedSkillLevel">متوسط</strong>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="skill-meter">
+                                    <div class="meter-fill" style="width: 35%"></div>
+                                </div>
+                                <div class="skill-labels">
+                                    <span>مبتدئ</span>
+                                    <span>متوسط</span>
+                                    <span>متقدم</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prediction-footer">
+                            <span class="prediction-tip">زيادة ساعة يومياً ترفعك لمستوى متقدم خلال 60 يوم</span>
+                        </div>
+                    </div>
+                    
+                    <div class="prediction-card">
+                        <div class="prediction-header">
+                            <i class="fas fa-bullseye"></i>
+                            <h3>الأهداف المقترحة</h3>
+                        </div>
+                        <div class="prediction-content">
+                            <ul class="goal-list">
+                                <li>
+                                    <i class="fas fa-target"></i>
+                                    <span>إكمال المرحلة الأولى خلال أسبوعين</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-target"></i>
+                                    <span>زيادة وقت التعلم اليومي إلى ساعتين</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-target"></i>
+                                    <span>إكمال مشروع عملي كل أسبوعين</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="prediction-footer">
+                            <button class="btn-set-goals" id="setGoalsBtn">
+                                <i class="fas fa-plus"></i>
+                                <span>إضافة أهداف شخصية</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- تحميل البيانات -->
+    <div class="data-loader" id="dataLoader">
+        <div class="loader-content">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>جاري تحميل بيانات الإحصائيات...</p>
+        </div>
+    </div>
+
+    <!-- نافذة تصدير البيانات -->
+    <div class="modal" id="exportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-download"></i> تصدير البيانات</h3>
+                <button class="modal-close" id="closeExportModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="export-options">
+                    <div class="export-option">
+                        <input type="radio" name="exportFormat" id="formatPdf" checked>
+                        <label for="formatPdf">
+                            <i class="fas fa-file-pdf"></i>
+                            <div>
+                                <h4>PDF Report</h4>
+                                <p>تقرير شامل مع الرسوم البيانية</p>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="export-option">
+                        <input type="radio" name="exportFormat" id="formatExcel">
+                        <label for="formatExcel">
+                            <i class="fas fa-file-excel"></i>
+                            <div>
+                                <h4>Excel Data</h4>
+                                <p>بيانات خام للتحليل المتقدم</p>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="export-option">
+                        <input type="radio" name="exportFormat" id="formatImage">
+                        <label for="formatImage">
+                            <i class="fas fa-image"></i>
+                            <div>
+                                <h4>Images</h4>
+                                <p>صور للرسوم البيانية فقط</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="export-period">
+                    <h4>الفترة الزمنية:</h4>
+                    <div class="period-options">
+                        <select id="exportPeriod">
+                            <option value="week">آخر أسبوع</option>
+                            <option value="month">آخر شهر</option>
+                            <option value="year">آخر سنة</option>
+                            <option value="all">كل البيانات</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" id="cancelExport">إلغاء</button>
+                <button class="btn-export-confirm" id="confirmExport">
+                    <i class="fas fa-download"></i>
+                    <span>بدء التصدير</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/progress.js"></script>
+</body>
+</html>

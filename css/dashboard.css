@@ -1,0 +1,1505 @@
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    padding: 30px 0;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    overflow-y: auto;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.sidebar-header {
+    padding: 0 25px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.user-avatar-large {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-avatar-large i {
+    font-size: 40px;
+    color: white;
+}
+
+.user-info h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+.user-level {
+    background: rgba(255, 215, 0, 0.15);
+    color: #ffd700;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* القائمة الجانبية */
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin: 5px 0;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-right: 3px solid transparent;
+    position: relative;
+}
+
+.menu-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border-right-color: #667eea;
+}
+
+.menu-link.active {
+    background: rgba(102, 126, 234, 0.15);
+    color: white;
+    border-right-color: #667eea;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.menu-icon i {
+    font-size: 18px;
+}
+
+.menu-text {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.menu-badge {
+    background: #667eea;
+    color: white;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* إحصائيات الـ Sidebar */
+.sidebar-stats {
+    padding: 20px 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 25px 0;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.stat-item:last-child {
+    margin-bottom: 0;
+}
+
+.stat-icon {
+    width: 45px;
+    height: 45px;
+    background: rgba(102, 126, 234, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.stat-icon i {
+    color: #667eea;
+    font-size: 20px;
+}
+
+.stat-info h4 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.stat-info p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* زر تسجيل الخروج */
+.sidebar-footer {
+    padding: 0 25px;
+}
+
+.logout-btn {
+    width: 100%;
+    background: rgba(255, 71, 87, 0.1);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    color: #ff4757;
+    padding: 14px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 71, 87, 0.2);
+    transform: translateY(-2px);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    margin-right: 280px;
+    padding: 30px;
+    min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+.main-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    padding: 35px 40px;
+    color: white;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.greeting-section h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.greeting-text {
+    opacity: 0.9;
+}
+
+.user-name {
+    color: #ffd700;
+    font-weight: 800;
+}
+
+.welcome-emoji {
+    font-size: 2.2rem;
+    margin-right: 10px;
+}
+
+.motivation-text {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 500px;
+    margin-top: 10px;
+}
+
+.header-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.date-display {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 12px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.date-display i {
+    font-size: 1.2rem;
+}
+
+.search-box {
+    position: relative;
+    width: 300px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px 20px 14px 50px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.95);
+    font-size: 1rem;
+    font-family: 'Tajawal', sans-serif;
+    color: #1e293b;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.search-icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #667eea;
+    font-size: 1.2rem;
+}
+
+/* ===== STATS SECTION ===== */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.stat-icon-wrapper {
+    flex-shrink: 0;
+}
+
+.stat-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: white;
+}
+
+.bg-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.bg-success { background: linear-gradient(135deg, #10b981 0%, #34d399 100%); }
+.bg-warning { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
+.bg-info { background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%); }
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1e293b;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #64748b;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.stat-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-progress .progress-bar {
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.stat-progress .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 3px;
+}
+
+.progress-text {
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+/* ===== MAIN SECTIONS GRID ===== */
+.main-sections-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 1200px) {
+    .main-sections-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== SECTION CARD ===== */
+.section-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+}
+
+.main-section {
+    min-height: 500px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.section-title h2 {
+    font-size: 1.8rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-title h2 i {
+    color: #667eea;
+}
+
+.section-subtitle {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+.btn-view-all {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.btn-view-all:hover {
+    background: #5a6fd8;
+    transform: translateX(-5px);
+}
+
+/* ===== PROGRESS SECTION ===== */
+.progress-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    align-items: center;
+}
+
+@media (max-width: 992px) {
+    .progress-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* الرسم البياني الدائري */
+.circular-progress {
+    display: flex;
+    justify-content: center;
+}
+
+.chart-circle {
+    position: relative;
+    width: 140px;
+    height: 140px;
+}
+
+.chart-circle svg {
+    transform: rotate(-90deg);
+}
+
+.chart-bg {
+    fill: none;
+    stroke: #e2e8f0;
+    stroke-width: 8;
+}
+
+.chart-progress {
+    fill: none;
+    stroke: #667eea;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 408;
+    stroke-dashoffset: 408;
+    transition: stroke-dashoffset 1s ease;
+}
+
+.chart-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.progress-percent {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #1e293b;
+    display: block;
+    line-height: 1;
+}
+
+.progress-label {
+    font-size: 0.9rem;
+    color: #64748b;
+    display: block;
+    margin-top: 8px;
+}
+
+/* تفاصيل التقدم */
+.progress-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.progress-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progress-name {
+    font-weight: 600;
+    color: #475569;
+    font-size: 1rem;
+}
+
+.progress-value {
+    font-weight: 700;
+    color: #667eea;
+    font-size: 1.1rem;
+}
+
+.progress-details .progress-bar {
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-details .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 5px;
+    transition: width 0.8s ease;
+}
+
+/* ===== ACTIVITY SECTION ===== */
+.activity-section {
+    margin-bottom: 40px;
+}
+
+.activity-time {
+    background: #f1f5f9;
+    padding: 10px 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #475569;
+    font-weight: 600;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.activity-item:hover {
+    background: white;
+    transform: translateX(-5px);
+    border-color: #c7d2fe;
+}
+
+.activity-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 22px;
+}
+
+.activity-icon.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.activity-icon.primary {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.activity-icon.warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+.activity-content {
+    flex: 1;
+}
+
+.activity-content h4 {
+    font-size: 1.1rem;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.activity-content p {
+    color: #64748b;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.activity-time {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    background: none;
+    padding: 0;
+    display: inline;
+}
+
+/* ===== STAGES CONTAINER ===== */
+.stages-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stage-card {
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.stage-card:hover {
+    border-color: #c7d2fe;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.stage-header {
+    padding: 20px;
+    background: white;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.stage-header:hover {
+    background: #f8fafc;
+}
+
+.stage-number {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.stage-info h3 {
+    font-size: 1.3rem;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.stage-info p {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.stage-progress {
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 150px;
+}
+
+.stage-progress .progress-bar {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.stage-progress .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+}
+
+.stage-progress span {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 600;
+    text-align: center;
+}
+
+.stage-toggle {
+    color: #94a3b8;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.stage-card.active .stage-toggle {
+    transform: rotate(180deg);
+}
+
+.courses-container {
+    display: none;
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* ===== ROADMAP STYLES ===== */
+.roadmap-preview {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 992px) {
+    .roadmap-preview {
+        grid-template-columns: 1fr;
+    }
+}
+
+.roadmap-stages {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.roadmap-stage {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.roadmap-stage.active {
+    border-color: #667eea;
+    background: rgba(102, 126, 234, 0.05);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+}
+
+.roadmap-stage:hover {
+    transform: translateX(-5px);
+    border-color: #c7d2fe;
+}
+
+.stage-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.marker-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    z-index: 2;
+}
+
+.roadmap-stage.active .marker-icon {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.marker-line {
+    width: 2px;
+    height: calc(100% - 50px);
+    background: #e2e8f0;
+    margin-top: 10px;
+}
+
+.roadmap-stage:last-child .marker-line {
+    display: none;
+}
+
+.stage-content {
+    flex: 1;
+}
+
+.stage-content h4 {
+    font-size: 1.2rem;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.stage-content p {
+    color: #64748b;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.stage-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.stage-progress .progress-bar {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.stage-progress .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.roadmap-stage.active .stage-progress .progress-fill {
+    background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+}
+
+.stage-progress span {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.btn-continue {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.btn-continue:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.roadmap-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+}
+
+.roadmap-stat {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.roadmap-stat-icon {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+}
+
+.roadmap-stat h5 {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.roadmap-stat p {
+    font-size: 1.3rem;
+    color: #1e293b;
+    font-weight: 700;
+}
+
+.personal-note {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    border: 2px solid #fed7aa;
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 25px;
+}
+
+.note-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.note-header i {
+    color: #f59e0b;
+    font-size: 24px;
+}
+
+.note-header h4 {
+    color: #92400e;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.note-text {
+    color: #92400e;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+/* ===== MINI ROADMAP STYLES ===== */
+.mini-roadmap {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+    align-items: start;
+}
+
+@media (max-width: 992px) {
+    .mini-roadmap {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* مراحل الـ Roadmap المصغرة */
+.roadmap-stages-mini {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    position: relative;
+}
+
+.stage-mini {
+    background: white;
+    border-radius: 16px;
+    border: 2px solid #e2e8f0;
+    padding: 25px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.stage-mini.active {
+    border-color: #667eea;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.stage-mini:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.stage-header-mini {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stage-badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    min-width: 80px;
+    text-align: center;
+}
+
+.stage-mini.active .stage-badge {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+}
+
+.stage-title-mini {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1e293b;
+    flex: 1;
+}
+
+.stage-progress-mini {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.progress-circle-mini {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.progress-circle-mini svg {
+    transform: rotate(-90deg);
+}
+
+.bg-circle {
+    fill: none;
+    stroke: #e2e8f0;
+    stroke-width: 4;
+}
+
+.progress-circle {
+    fill: none;
+    stroke: #667eea;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 170;
+    stroke-dashoffset: 170;
+}
+
+.stage-mini.active .progress-circle {
+    stroke: #10b981;
+}
+
+.progress-text-mini {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.stage-stats-mini {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.stat-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.stat-mini i {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #667eea;
+}
+
+.stage-mini.active .stat-mini i {
+    color: #10b981;
+}
+
+.roadmap-connector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    position: relative;
+    z-index: 1;
+    margin: 5px 0;
+}
+
+.roadmap-connector i {
+    color: #cbd5e1;
+    font-size: 1.2rem;
+}
+
+/* موجز الأداء */
+.roadmap-summary-mini {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid #e2e8f0;
+}
+
+.summary-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.2rem;
+    color: #1e293b;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.summary-title i {
+    color: #667eea;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.summary-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.summary-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.summary-icon.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.summary-icon.primary {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.summary-icon.warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+.summary-content h5 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.summary-content p {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+/* مؤشر التقدم */
+.progress-indicator {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.indicator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.indicator-header span:first-child {
+    font-weight: 600;
+    color: #475569;
+}
+
+.indicator-percent {
+    font-weight: 700;
+    color: #667eea;
+    font-size: 1.2rem;
+}
+
+.indicator-bar {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.indicator-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 4px;
+    position: relative;
+}
+
+.indicator-fill::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -3px;
+    width: 14px;
+    height: 14px;
+    background: #667eea;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+.indicator-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+/* زر البدء */
+.roadmap-action {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px solid #e2e8f0;
+}
+
+.btn-start-learning {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-start-learning:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+}
+
+.btn-start-learning i {
+    font-size: 1.3rem;
+}
+
+.action-tip {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-top: 12px;
+}
+
+/* ===== MODAL STYLES ===== */
+.roadmap-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.roadmap-content {
+    background: white;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.close-roadmap {
+    position: absolute;
+    left: 25px;
+    top: 25px;
+    background: #64748b;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.close-roadmap:hover {
+    background: #475569;
+    transform: rotate(90deg);
+}
+
+.detailed-roadmap {
+    padding: 40px;
+}
+
+.roadmap-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.roadmap-header h2 {
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.roadmap-header i {
+    color: #667eea;
+}
+
+.roadmap-subtitle {
+    color: #64748b;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.btn-view-details {
+    background: transparent;
+    color: #667eea;
+    border: 2px solid #667eea;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.btn-view-details:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* رسائل التحميل */
+.loading-message {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+.loading-content {
+    text-align: center;
+    color: white;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.loading-content i {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #667eea;
+}
+
+.loading-content p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+
+
+
+

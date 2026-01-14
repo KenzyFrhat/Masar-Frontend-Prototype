@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ابدأ مسارك التعليمي - MASAR</title>
+
+    <!-- الروابط المشتركة -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- الروابط الخاصة بهذه الصفحة -->
+    <link rel="stylesheet" href="css/onboarding.css">
+</head>
+
+<body>
+    <!-- Header مشترك -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="M-img-container">
+                    <img src="Images/M.png" alt="MASAR Logo" class="M-img">
+                </div>
+                <div class="logo-text">
+                    <img src="Images/image-removebg-preview.png" alt="MASAR Logo" class="logo-img">
+                    <span class="logo-sub">Where Mastery begins</span>
+                </div>
+            </a>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="index.html#problems">المشكلة</a></li>
+                    <li><a href="index.html#how-it-works">كيف تعمل</a></li>
+                    <li><a href="index.html#features">المميزات</a></li>
+                    <li><a href="#" class="active">ابدأ مسارك</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="btn btn-outline" onclick="window.location.href='index.html'">
+                    <i class="fas fa-arrow-right"></i> رجوع
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="onboarding-container">
+        <div class="container">
+            <!-- شريط التقدم -->
+            <div class="progress-container">
+                <!-- بدل من 5، ضع 10 خطوات -->
+                <div class="progress-steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-circle">1</div>
+                        <span class="step-label">السؤال 1</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-circle">2</div>
+                        <span class="step-label">السؤال 2</span>
+                    </div>
+                    <!-- أضف من 3 إلى 10 -->
+                    <div class="step" data-step="3">
+                        <div class="step-circle">3</div>
+                        <span class="step-label">السؤال 3</span>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-circle">4</div>
+                        <span class="step-label">السؤال 4</span>
+                    </div>
+                    <div class="step" data-step="5">
+                        <div class="step-circle">5</div>
+                        <span class="step-label">السؤال 5</span>
+                    </div>
+                    <div class="step" data-step="6">
+                        <div class="step-circle">6</div>
+                        <span class="step-label">السؤال 6</span>
+                    </div>
+                    <div class="step" data-step="7">
+                        <div class="step-circle">7</div>
+                        <span class="step-label">السؤال 7</span>
+                    </div>
+                    <div class="step" data-step="8">
+                        <div class="step-circle">8</div>
+                        <span class="step-label">السؤال 8</span>
+                    </div>
+                    <div class="step" data-step="9">
+                        <div class="step-circle">9</div>
+                        <span class="step-label">السؤال 9</span>
+                    </div>
+                    <div class="step" data-step="10">
+                        <div class="step-circle">10</div>
+                        <span class="step-label">السؤال 10</span>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- الأسئلة -->
+            <div class="onboarding-content">
+                <div class="welcome-section fade-in">
+                    <h1><i class="fas fa-user-cog"></i> هيا نتعرف عليك!</h1>
+                    <p class="subtitle">سنسألك 10 أسئلة قصيرة لنبني لك المسار التعليمي المثالي</p> <!-- غير 5 إلى 10 -->
+                    <p class="description">كلما كانت إجاباتك دقيقة، كلما كان مسارك التعليمي أكثر فاعلية وتخصيصًا
+                        لاحتياجاتك.</p>
+                </div>
+
+                <!-- نموذج الأسئلة -->
+                <!-- بدل قسم الأسئلة القديم، ضع هذا -->
+
+                <!-- نموذج الأسئلة المحدث -->
+                <form id="onboardingForm" class="onboarding-form">
+                    <!-- السؤال 1 -->
+                    <div class="question-card active" id="question1">
+                        <div class="question-header">
+                            <h2><span class="question-number">1</span> لو محتاج تفهم طريقة حل لعبة ذكاء معقدة في أسرع
+                                وقت، هتعمل إيه؟</h2>
+                            <p class="question-hint">اختر الطريقة التي تناسب أسلوبك في الفهم السريع</p>
+                        </div>
+
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="learningSpeed" value="video" required>
+                                <div class="option-content">
+                                    <i class="fas fa-video"></i>
+                                    <h3>أشوف فيديو بيشرح الحل</h3>
+                                    <p>أفضل الشرح المرئي العملي أمامي</p>
+                                    <span class="tag">مرئي</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="learningSpeed" value="reading">
+                                <div class="option-content">
+                                    <i class="fas fa-book"></i>
+                                    <h3>أقرأ التعليمات المكتوبة</h3>
+                                    <p>أفضل القراءة المركزة والتحليل</p>
+                                    <span class="tag">تحليلي</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="learningSpeed" value="mixed">
+                                <div class="option-content">
+                                    <i class="fas fa-random"></i>
+                                    <h3>مزيج من الاثنين</h3>
+                                    <p>فيديو أولاً ثم قراءة للتثبيت</p>
+                                    <span class="tag">مرن</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 2 -->
+                    <div class="question-card" id="question2">
+                        <div class="question-header">
+                            <h2><span class="question-number">2</span> لو موضوع محتاج ساعة شرح، تحب "مسار" ينظمهولك بأي
+                                شكل؟</h2>
+                            <p class="question-hint">كيف تفضل تنظيم المحتوى التعليمي الطويل؟</p>
+                        </div>
+
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="contentOrganization" value="chunks" required>
+                                <div class="option-content">
+                                    <i class="fas fa-th"></i>
+                                    <h3>مقاطع صغيرة</h3>
+                                    <p>تقسيم الساعة لمقاطع صغيرة، كل مقطع لفكرة واحدة</p>
+                                    <span class="tag">مجزأ</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="contentOrganization" value="continuous">
+                                <div class="option-content">
+                                    <i class="fas fa-stream"></i>
+                                    <h3>شرح طويل مترابط</h3>
+                                    <p>مقاطع طويلة ومترابطة لأحافظ على التركيز</p>
+                                    <span class="tag">متصل</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 3 -->
+                    <div class="question-card" id="question3">
+                        <div class="question-header">
+                            <h2><span class="question-number">3</span> تحب "مسار" يبدأ معاك بأي أسلوب في الدروس؟</h2>
+                            <p class="question-hint">الموازنة بين الجانب النظري والعملي</p>
+                        </div>
+
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="theoryPractice" value="practiceFirst" required>
+                                <div class="option-content">
+                                    <i class="fas fa-code"></i>
+                                    <h3>عملي أولاً</h3>
+                                    <p>التطبيق أولاً لرؤية النتيجة، ثم شرح التفاصيل</p>
+                                    <span class="tag">تجريبي</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="theoryPractice" value="theoryFirst">
+                                <div class="option-content">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    <h3>نظري أولاً</h3>
+                                    <p>شرح الفكرة ومنطقها أولاً، ثم التطبيق</p>
+                                    <span class="tag">منهجي</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 4 -->
+                    <div class="question-card" id="question4">
+                        <div class="question-header">
+                            <h2><span class="question-number">4</span> إمتى بيكون الوقت المثالي اللي بتقدر تنجز فيه أصعب
+                                مهامك؟</h2>
+                            <p class="question-hint">اختر الوقت الذي تكون فيه أكثر إنتاجية</p>
+                        </div>
+
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="peakTime" value="morning" required>
+                                <div class="option-content">
+                                    <i class="fas fa-sun"></i>
+                                    <h3>الصباح الباكر</h3>
+                                    <p>في هدوء الصباح الباكر</p>
+                                    <span class="tag">صباحي</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="peakTime" value="evening">
+                                <div class="option-content">
+                                    <i class="fas fa-moon"></i>
+                                    <h3>المساء المتأخر</h3>
+                                    <p>في وقت متأخر من المساء أو السهرات</p>
+                                    <span class="tag">مسائي</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="peakTime" value="dawn">
+                                <div class="option-content">
+                                    <i class="fas fa-clock"></i>
+                                    <h3>وقت الفجر</h3>
+                                    <p>في وقت الفجر والناس نيام</p>
+                                    <span class="tag">فجري</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 5 -->
+                    <div class="question-card" id="question5">
+                        <div class="question-header">
+                            <h2><span class="question-number">5</span> إيه أقل مدة تقدر تخصصها "يومياً" للتعلم مهما كان
+                                يومك مزدحماً؟</h2>
+                            <p class="question-hint">الوقت اليومي المتاح للتعلم</p>
+                        </div>
+
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="dailyTime" value="short" required>
+                                <div class="option-content">
+                                    <i class="fas fa-hourglass-start"></i>
+                                    <h3>15-30 دقيقة</h3>
+                                    <p>من 15 إلى 30 دقيقة يومياً</p>
+                                    <span class="tag">مكثف</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="dailyTime" value="medium">
+                                <div class="option-content">
+                                    <i class="fas fa-hourglass-half"></i>
+                                    <h3>1-2 ساعة</h3>
+                                    <p>من ساعة إلى ساعتين يومياً</p>
+                                    <span class="tag">متوسط</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="dailyTime" value="long">
+                                <div class="option-content">
+                                    <i class="fas fa-hourglass-end"></i>
+                                    <h3>3+ ساعات</h3>
+                                    <p>أكثر من 3 ساعات يومياً</p>
+                                    <span class="tag">مكثف جداً</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 6 -->
+                    <div class="question-card" id="question6">
+                        <div class="question-header">
+                            <h2><span class="question-number">6</span> لو الكود طلع "رسالة خطأ" وعطلت وأنت بتطبق، إيه
+                                أكتر وسيلة مساعدة بتفضلها؟</h2>
+                            <p class="question-hint">كيف تفضل التعامل مع الأخطاء؟</p>
+                        </div>
+
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="errorHelp" value="hint" required>
+                                <div class="option-content">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <h3>تلميح بسيط</h3>
+                                    <p>تلميح يخليني أفكر وأوصل للحل بنفسي</p>
+                                    <span class="tag">مكتشف</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="errorHelp" value="solution">
+                                <div class="option-content">
+                                    <i class="fas fa-check-circle"></i>
+                                    <h3>الحل النهائي</h3>
+                                    <p>رؤية الحل الصحيح فوراً للمقارنة</p>
+                                    <span class="tag">واضح</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 7 -->
+                    <div class="question-card" id="question7">
+                        <div class="question-header">
+                            <h2><span class="question-number">7</span> بعد ما تخلص مرحلة صعبة بنجاح، إيه أكتر حاجة
+                                بتحفزك تكمل؟</h2>
+                            <p class="question-hint">ما هو محفزك الرئيسي للاستمرار؟</p>
+                        </div>
+
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="motivation" value="leaderboard" required>
+                                <div class="option-content">
+                                    <i class="fas fa-trophy"></i>
+                                    <h3>قائمة المتصدرين</h3>
+                                    <p>وجود اسمي في قائمة الأوائل</p>
+                                    <span class="tag">تنافسي</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="motivation" value="rewards">
+                                <div class="option-content">
+                                    <i class="fas fa-gift"></i>
+                                    <h3>المكافآت والشهادات</h3>
+                                    <p>تجميع نقاط تفتح مكافآت أو شهادات</p>
+                                    <span class="tag">مكافآت</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="motivation" value="progress">
+                                <div class="option-content">
+                                    <i class="fas fa-chart-line"></i>
+                                    <h3>رؤية التقدم</h3>
+                                    <p>شريط التقدم وهو بيزيد والكود شغال صح</p>
+                                    <span class="tag">تقدمي</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 8 -->
+                    <div class="question-card" id="question8">
+                        <div class="question-header">
+                            <h2><span class="question-number">8</span> إيه الجو اللي بيخلي إنتاجيتك في أعلى مستوياتها
+                                وأنت بتذاكر؟</h2>
+                            <p class="question-hint">بيئة التعلم المثالية بالنسبة لك</p>
+                        </div>
+
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="studyEnvironment" value="alone" required>
+                                <div class="option-content">
+                                    <i class="fas fa-user"></i>
+                                    <h3>الخلوة التامة</h3>
+                                    <p>الهدوء في مكان معزول</p>
+                                    <span class="tag">منعزل</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="studyEnvironment" value="group">
+                                <div class="option-content">
+                                    <i class="fas fa-users"></i>
+                                    <h3>مجموعة دراسية</h3>
+                                    <p>وسط مجموعة تذاكر نفس الشيء</p>
+                                    <span class="tag">مجتمعي</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="studyEnvironment" value="community">
+                                <div class="option-content">
+                                    <i class="fas fa-comments"></i>
+                                    <h3>مفرداً مع مجتمع</h3>
+                                    <p>مذاكرة فردية مع مجتمع للسؤال وقت الحاجة</p>
+                                    <span class="tag">مرن</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 9 -->
+                    <div class="question-card" id="question9">
+                        <div class="question-header">
+                            <h2><span class="question-number">9</span> لو حسيت في أول أسبوع إن مستواك ثابت ومش فاهم
+                                حاجة، هتعمل إيه؟</h2>
+                            <p class="question-hint">رد فعلك تجاه صعوبات التعلم الأولية</p>
+                        </div>
+
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="frustrationResponse" value="quit" required>
+                                <div class="option-content">
+                                    <i class="fas fa-search"></i>
+                                    <h3>البحث عن بديل</h3>
+                                    <p>أشعر أن المجال مش لي وأبحث عن حاجة تانية</p>
+                                    <span class="tag">متغير</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="frustrationResponse" value="discouraged">
+                                <div class="option-content">
+                                    <i class="fas fa-heart-broken"></i>
+                                    <h3>الاستمرار بمحبط</h3>
+                                    <p>أكمل محبطاً وأحتاج تشجيع مستمر</p>
+                                    <span class="tag">محفز</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="frustrationResponse" value="persistent">
+                                <div class="option-content">
+                                    <i class="fas fa-seedling"></i>
+                                    <h3>الاستمرار ببرود</h3>
+                                    <p>أكمل بثقة لأنها مرحلة تأسيس طبيعية</p>
+                                    <span class="tag">صابر</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- السؤال 10 -->
+                    <div class="question-card" id="question10">
+                        <div class="question-header">
+                            <h2><span class="question-number">10</span> هل تحب الفهم بالتفصيل المفرط أم الملخص الوافي؟
+                            </h2>
+                            <p class="question-hint">تفضيلك لمستوى التفاصيل في الشرح</p>
+                        </div>
+
+                        <div class="options-grid">
+                            <label class="option-card">
+                                <input type="radio" name="detailLevel" value="detailed" required>
+                                <div class="option-content">
+                                    <i class="fas fa-microscope"></i>
+                                    <h3>تفصيل مفرط</h3>
+                                    <p>أحب الفهم بكل التفاصيل الدقيقة</p>
+                                    <span class="tag">دقيق</span>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="radio" name="detailLevel" value="summary">
+                                <div class="option-content">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    <h3>ملخص وافي</h3>
+                                    <p>أفضل الملخص الشامل دون تعقيد</p>
+                                    <span class="tag">ملخص</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- خريطة المسار (تبقى كما هي) -->
+                    <div class="path-preview" id="pathPreview">
+                        <div class="path-header">
+                            <h2><i class="fas fa-road"></i> مسارك التعليمي المقترح</h2>
+                            <p>بناءً على إجاباتك، إليك المسار الذي نوصي به:</p>
+                        </div>
+                        <!-- في قسم path-preview، عدل path-details ليكون: -->
+                        <div class="path-details">
+                            <!-- سيتم ملء هذا القسم تلقائياً بالJavaScript -->
+                            <!-- سيظهر هنا الملخص التفصيلي لجميع الإجابات -->
+                        </div>
+
+                        <!-- أزوال path-actions تبقى كما هي -->
+                        <div class="path-actions">
+                            <button type="button" class="btn btn-outline" id="editPathBtn">
+                                <i class="fas fa-edit"></i> تعديل الإجابات
+                            </button>
+                            <button type="button" class="btn btn-primary" id="startPathBtn">
+                                <i class="fas fa-play"></i> ابدأ مساري التعليمي
+                            </button>
+                        </div>
+                    </div>
+                    <!-- أزرار التنقل -->
+                    <div class="navigation-buttons">
+                        <button type="button" class="btn btn-outline" id="prevBtn" disabled>
+                            <i class="fas fa-arrow-right"></i> السابق
+                        </button>
+                        <button type="button" class="btn btn-primary" id="nextBtn">
+                            التالي <i class="fas fa-arrow-left"></i>
+                        </button>
+                        <button type="submit" class="btn btn-success" id="submitBtn" style="display: none;">
+                            <i class="fas fa-check"></i> أنشئ مساري
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer مشترك 
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="M-img-container">
+                            <img src="Images/M.png" alt="Masar-logo" class="M-img">
+                        </div>
+                        <span class="footer-logo-text">مسار</span>
+                    </div>
+                    <p>منصة التعليم الذكي التي تضعك على المسار الصحيح نحو إتقان أي مهارة تريدها.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="index.html#problems">المشكلة</a></li>
+                        <li><a href="index.html#how-it-works">كيف تعمل</a></li>
+                        <li><a href="index.html#features">المميزات</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <p><i class="fas fa-envelope"></i> support@masar.com</p>
+                    <p dir="ltr"><i class="fas fa-phone"></i> +20 123 456 7890</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2024 MASAR. جميع الحقوق محفوظة. | Where Mastery begins</p>
+            </div>
+        </div>
+    </footer>-->
+
+    <!-- روابط JavaScript -->
+    <script src="js/onboarding.js"></script>
+</body>
+
+</html>

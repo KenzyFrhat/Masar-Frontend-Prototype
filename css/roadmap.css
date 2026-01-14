@@ -1,0 +1,1041 @@
+/* ===== ROADMAP CSS - متوافق مع player.css ===== */
+
+/* إعادة استخدام الأسس من player.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    line-height: 1.6;
+    direction: rtl;
+}
+
+/* ===== SIDEBAR (نفس تصميم player.css) ===== */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    padding: 30px 0;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    overflow-y: auto;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.sidebar-header, .sidebar-menu, .sidebar-stats, .sidebar-footer {
+    padding: 0 25px;
+}
+
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.user-avatar-large {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-avatar-large i {
+    font-size: 40px;
+    color: white;
+}
+
+.user-info h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+.user-level {
+    background: rgba(255, 215, 0, 0.15);
+    color: #ffd700;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* القائمة الجانبية */
+.sidebar-menu {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.sidebar-menu li {
+    margin: 5px 0;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-right: 3px solid transparent;
+    border-radius: 10px;
+}
+
+.menu-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border-right-color: #667eea;
+}
+
+.menu-link.active {
+    background: rgba(102, 126, 234, 0.15);
+    color: white;
+    border-right-color: #667eea;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.menu-icon i {
+    font-size: 18px;
+}
+
+.menu-text {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.menu-badge {
+    background: #667eea;
+    color: white;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* إحصائيات الـ Sidebar */
+.sidebar-stats {
+    padding: 20px 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.stat-item:last-child {
+    margin-bottom: 0;
+}
+
+.stat-icon {
+    width: 45px;
+    height: 45px;
+    background: rgba(102, 126, 234, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.stat-icon i {
+    color: #667eea;
+    font-size: 20px;
+}
+
+.stat-info h4 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.stat-info p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* زر تسجيل الخروج */
+.logout-btn {
+    width: 100%;
+    background: rgba(255, 71, 87, 0.1);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    color: #ff4757;
+    padding: 14px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Tajawal', sans-serif;
+    border: none;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 71, 87, 0.2);
+    transform: translateY(-2px);
+}
+
+/* زر القائمة للموبايل */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1100;
+    background: #667eea;
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+    background: #5a67d8;
+    transform: scale(1.1);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    margin-right: 280px;
+    min-height: 100vh;
+    transition: margin-right 0.3s ease;
+}
+
+/* ===== ROADMAP HEADER ===== */
+.main-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 40px;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    min-width: 180px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.course-title {
+    flex: 1;
+    text-align: center;
+}
+
+.course-title h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    color: white;
+}
+
+.course-title .section-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    min-width: 180px;
+    justify-content: flex-end;
+}
+
+.btn-print, .btn-share {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    border: none;
+}
+
+.btn-print:hover, .btn-share:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+}
+
+/* ===== ROADMAP STATS OVERVIEW ===== */
+.roadmap-stats-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 30px;
+    padding-bottom: 0;
+}
+
+.stat-overview {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.stat-overview:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-color: #c7d2fe;
+}
+
+.stat-overview i {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.stat-overview div {
+    flex: 1;
+}
+
+.stat-overview h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.stat-overview p {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #1e293b;
+    font-weight: 700;
+}
+
+/* ===== ROADMAP STAGES SECTION ===== */
+.roadmap-stages-section {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Roadmap Stage Card */
+.roadmap-stage-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.roadmap-stage-card:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.stage-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.stage-header:hover {
+    opacity: 0.95;
+}
+
+.stage-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.stage-badge i {
+    transition: transform 0.3s ease;
+}
+
+.stage-title {
+    flex: 1;
+    margin: 0 30px;
+}
+
+.stage-title h2 {
+    margin: 0 0 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.5rem;
+}
+
+.stage-title h2 i {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.stage-title p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+}
+
+.stage-progress-indicator {
+    flex-shrink: 0;
+}
+
+/* Progress Circle */
+.progress-circle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+.progress-circle svg {
+    transform: rotate(-90deg);
+}
+
+.progress-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.3);
+    stroke-width: 4;
+}
+
+.progress-bar {
+    fill: none;
+    stroke: white;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 169.56;
+    stroke-dashoffset: calc(169.56 - (169.56 * var(--progress)) / 100);
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.progress-circle span {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: white;
+}
+
+/* Courses Container */
+.courses-container {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s ease;
+}
+
+.courses-container.show {
+    padding: 20px;
+    max-height: 2000px;
+}
+
+/* Course Card */
+.course-card {
+    background: #f8fafc;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.course-card:last-child {
+    margin-bottom: 0;
+}
+
+.course-card:hover {
+    border-color: #c7d2fe;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.course-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.course-header:hover {
+    background: #f8fafc;
+}
+
+.course-icon {
+    font-size: 32px;
+    color: #667eea;
+    min-width: 50px;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.course-info {
+    flex: 1;
+}
+
+.course-info h3 {
+    margin: 0 0 8px;
+    color: #1e293b;
+    font-size: 1.25rem;
+}
+
+.course-info p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.course-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-start-course {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.95rem;
+}
+
+.btn-start-course:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.course-toggle {
+    color: #94a3b8;
+    transition: transform 0.3s ease;
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* Lessons Container */
+.lessons-container {
+    background: white;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    border-top: 1px solid #e2e8f0;
+    transition: max-height 0.5s ease, padding 0.3s ease;
+}
+
+.lessons-container.show {
+    padding: 20px;
+    max-height: 2000px;
+}
+
+/* Lesson Item */
+.lesson-item {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 15px;
+    border-right: 4px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.lesson-item:last-child {
+    margin-bottom: 0;
+}
+
+.lesson-item.completed {
+    border-right-color: #10b981;
+}
+
+.lesson-item:hover {
+    background: white;
+    border-color: #667eea;
+    transform: translateX(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.lesson-number {
+    background: #667eea;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+}
+
+.lesson-item.completed .lesson-number {
+    background: #10b981;
+}
+
+.lesson-content {
+    flex: 1;
+}
+
+.lesson-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.lesson-header h4 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.lesson-duration {
+    color: #64748b;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.lesson-content p {
+    margin: 0 0 12px;
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.lesson-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lesson-status {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.lesson-status.completed {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.lesson-status.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.lesson-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-review, .btn-notes, .btn-start {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.btn-review {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.btn-review:hover {
+    background: #bfdbfe;
+}
+
+.btn-notes {
+    background: #f3e8ff;
+    color: #7c3aed;
+}
+
+.btn-notes:hover {
+    background: #e9d5ff;
+}
+
+.btn-start {
+    background: #667eea;
+    color: white;
+}
+
+.btn-start:hover {
+    background: #5a67d8;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.roadmap-stage-card {
+    animation: slideDown 0.5s ease-out;
+}
+
+.roadmap-stage-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.roadmap-stage-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+    }
+}
+
+.stage-header:hover .stage-badge {
+    animation: pulse 2s infinite;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+    .main-content {
+        margin-right: 0;
+    }
+    
+    .sidebar {
+        transform: translateX(100%);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .back-btn {
+        align-self: flex-start;
+        min-width: auto;
+    }
+    
+    .header-actions {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 768px) {
+    .roadmap-stats-overview {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .stage-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    .stage-title {
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .stage-progress-indicator {
+        align-self: center;
+    }
+    
+    .course-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .course-icon {
+        margin: 0;
+    }
+    
+    .course-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .lesson-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .lesson-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .lesson-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 576px) {
+    .roadmap-stats-overview {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-overview {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .stat-overview i {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .main-header {
+        padding: 15px 20px;
+    }
+    
+    .roadmap-stages-section {
+        padding: 20px;
+    }
+    
+    .stage-title h2 {
+        font-size: 1.3rem;
+    }
+    
+    .stage-title p {
+        font-size: 1rem;
+    }
+    
+    .btn-start-course {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .sidebar, .mobile-menu-toggle, .header-actions, .btn-start-course,
+    .course-toggle, .lesson-actions, .stage-badge i {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-right: 0 !important;
+    }
+    
+    .roadmap-stage-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+    
+    .stage-header {
+        background: #f8fafc !important;
+        color: #1e293b !important;
+        border-bottom: 2px solid #667eea;
+    }
+    
+    .stage-title h2 {
+        color: #1e293b !important;
+    }
+    
+    .stage-title p {
+        color: #64748b !important;
+    }
+    
+    .progress-circle span {
+        color: #1e293b !important;
+    }
+    
+    .course-card, .lesson-item {
+        border: 1px solid #ddd !important;
+        box-shadow: none !important;
+    }
+}
+
+/* ===== ACCESSIBILITY ===== */
+.roadmap-stage-card:focus-within {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+.btn-start-course:focus, .btn-review:focus, .btn-notes:focus, .btn-start:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* ===== LOADING STATES ===== */
+.roadmap-stage-card.loading .stage-title h2,
+.roadmap-stage-card.loading .stage-title p,
+.roadmap-stage-card.loading .progress-circle span {
+    color: transparent;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+.lessons-container {
+    scrollbar-width: thin;
+    scrollbar-color: #c7d2fe #f1f5f9;
+}
+
+.lessons-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lessons-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+.lessons-container::-webkit-scrollbar-thumb {
+    background: #c7d2fe;
+    border-radius: 3px;
+}
+
+.lessons-container::-webkit-scrollbar-thumb:hover {
+    background: #a5b4fc;
+}
+

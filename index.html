@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MASAR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="css/navbar.css">
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="Images/M.png" alt="MASAR Logo" class="M-img">
+                <div class="logo-text">
+                    <img src="Images/image-removebg-preview.png" alt="MASAR Logo" class="logo-img">
+                    <span class="logo-sub">Where Mastery begins</span>
+                </div>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">الرئيسية</a></li>
+                    <li><a href="#problems">المشكلة</a></li>
+                    <li><a href="#how-it-works">كيف تعمل</a></li>
+                    <li><a href="#features">المميزات</a></li>
+                    <li><a href="#Contact-details">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <button class="btn btn-outline">تسجيل الدخول</button>
+                <button class="btn btn-primary" onclick="startPath()">ابدأ مسارك</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container" style="display: flex; align-items: center;">
+            <div class="hero-content">
+                <h1>مسارك <span>التعليمي</span> يبدأ من هنا</h1>
+                <p>منصة تعليمية ذكية تحوّل رحلة تعلمك من فوضى المصادر إلى مسار واضح ومخصص لك وحدك.</p>
+                
+                <div class="hero-btns">
+                    <button class="btn btn-primary" onclick="startPath()">
+                        ابدأ مسارك التعليمي
+                    </button>
+                    <button class="btn btn-outline" onclick="scrollToProblems()">
+                        اكتشف المشكلة
+                    </button>
+                </div>
+                
+                <div class="platform-description">
+                    <p>"An AI-powered learning platform that guides you through your journey of knowledge. Connect concepts, build pathways, and illuminate your path to mastery."</p>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <div class="visual-element"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section class="problems" id="problems">
+        <div class="container">
+            <h2 class="section-title">المشاكل التي تحلها MASAR</h2>
+            
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>تشتت المصادر</h3>
+                    <p>فيديوهات، كورسات، بلاي ليستات... بدون ترتيب منطقي. MASAR تنظم لك المصادر في مسار متسلسل.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>غياب المسار</h3>
+                    <p>لا تعرف من أين تبدأ، وإلى أين تسير. MASAR ترسم لك خريطة واضحة للتعلم من البداية للنهاية.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <i class="fas fa-fire-alt"></i>
+                    <h3>انقطاع الاستمرارية</h3>
+                    <p>تبدأ بحماس، وتتوقف بعد أسبوعين. MASAR تتابع تقدمك وتحفزك للاستمرار.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>عدم وجود Feedback</h3>
+                    <p>لا أحد يخبرك إذا كنت تسير في الاتجاه الصحيح. MASAR تقدم لك تغذية راجعة ذكية.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>فجوة سوق العمل</h3>
+                    <p>تتعلم ولكن لا تعرف كيف تطبق في العمل. MASAR تربط التعلم بمتطلبات السوق الحقيقية.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <i class="fas fa-user-cog"></i>
+                    <h3>عدم التخصيص</h3>
+                    <p>نفس المحتوى للجميع. MASAR تبني مسارًا مخصصًا بناءً على هدفك، مستواك، وقتك، وأسلوبك.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id = "how-it-works">
+        <div class="container">
+            <h2 class="section-title">كيف تعمل المنصة؟</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>التفهم</h3>
+                    <p>نجمع معلومات عن هدفك، مستواك، وقتك، وأسلوب تعلمك</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>التخصيص</h3>
+                    <p>نبني لك مسارًا تعليميًا مخصصًا يناسب احتياجاتك تحديدًا</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>المتابعة</h3>
+                    <p>نرصد تقدمك ونعدل مسارك بناءً على أدائك وتطورك</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>الإنجاز</h3>
+                    <p>تصل لهدفك التعليمي بخطوات واضحة وثقة عالية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+<section class="features" id="features">
+    <div class="container">
+        <h2 class="section-title">مميزات MASAR الفريدة</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-user-cog"></i>
+                <h3>تخصيص كامل</h3>
+                <p>مسار تعليمي مبنى عليك أنت: هدفك، مستواك، وقتك، أسلوبك</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-road"></i>
+                <h3>مسار واضح</h3>
+                <p>خريطة تعليمية تبين لك البداية، النهاية، وكل خطوة بينهما</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>متابعة ذكية</h3>
+                <p>نظام متابعة يرصد تقدمك ويقدم تقارير دورية عن أدائك</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-robot"></i>
+                <h3>تغذية راجعة ذكية</h3>
+                <p>تقييم مستمر وإرشادات تلقائية بناءً على تقدمك</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-briefcase"></i>
+                <h3>مواءمة سوق العمل</h3>
+                <p>مسارات مصممة بناءً على متطلبات الشركات الحقيقية</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-sync-alt"></i>
+                <h3>تحديث ديناميكي</h3>
+                <p>مسارك يتغير ويتكيف مع تطور احتياجاتك وأهدافك</p>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>جاهز لتبدأ رحلتك التعليمية الحقيقية؟</h2>
+            <p>انضم إلى آلاف المتعلمين الذين حوّلوا تعلمهم من فوضى إلى مسار واضح مع MASAR</p>
+            <button class="btn btn-primary" onclick="startPath()">ابدأ مسارك المجاني الآن</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <!--<div class="footer-logo">
+                       <div style="background: white; color: var(--primary); width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold;">Δ</div> 
+                       <div ><img src="Images/M.png" alt="Masar-logo" class="M-img"></div>
+                        MASAR
+                    </div>-->
+                    <div class="footer-logo">
+                        <div class="M-img-container">
+                            <img src="Images/M.png" alt="Masar-logo" class="M-img">
+                        </div>
+                        <span class="footer-logo-text">مسار</span>
+                    </div>
+                    <p>منصة التعليم الذكي التي تضعك على المسار الصحيح نحو إتقان أي مهارة تريدها.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="#" style="color: white; text-decoration: none;">الرئيسية</a></li>
+                        <li><a href="#" style="color: white; text-decoration: none;">عن المنصة</a></li>
+                        <li><a href="#" style="color: white; text-decoration: none;">كيف تعمل</a></li>
+                        <li><a href="#" style="color: white; text-decoration: none;">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section" id = "Contact-details">
+                    <h4>اتصل بنا</h4>
+                    <p>support@masar.com</p>
+                    <p dir="ltr">+20 123 456 7890</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2024 MASAR. جميع الحقوق محفوظة. | Where Mastery begins</p>
+            </div>
+        </div>
+    </footer>
+  
+    <script src="js/navbar.js"></script>
+    <script src="js/index.js">  </script>
+</body>
+</html>

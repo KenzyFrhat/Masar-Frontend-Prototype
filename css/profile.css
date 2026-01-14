@@ -1,0 +1,8 @@
+/* أنماط أساسية لصفحة الملف الشخصي */
+.profile-container {
+    max-width: 1200px;
+    margin: 100px auto 40px;
+    padding: 0 20px;
+}
+
+/* سيتم إكمالها في الخطوة التالية */

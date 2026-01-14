@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطة التعلم الكاملة - مسار</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/roadmap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- شريط التنقل الجانبي -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="user-profile">
+                <div class="user-avatar-large">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-info">
+                    <h3 id="roadmapUserName">مرحباً، محمد</h3>
+                    <p class="user-level">
+                        <i class="fas fa-crown"></i>
+                        مبتدئ
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li>
+                <a href="dashboard.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span class="menu-text">لوحة التحكم</span>
+                </a>
+            </li>
+            <li class="active">
+                <a href="roadmap.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <span class="menu-text">خطتي التعليمية</span>
+                </a>
+            </li>
+            <li>
+                <a href="course-player.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <span class="menu-text">استكمال التعلم</span>
+                </a>
+            </li>
+            <li>
+                <a href="progress.html" class="menu-link">
+                    <div class="menu-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <span class="menu-text">إحصائيات متقدمة</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-stats">
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="stat-info">
+                    <h4 id="roadmapStreakDays">3</h4>
+                    <p>يوم متتالي</p>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h4 id="roadmapTotalHours">12</h4>
+                    <p>ساعة تعلم</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>تسجيل الخروج</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- زر القائمة للموبايل -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <!-- الهيدر -->
+        <header class="main-header">
+            <div class="header-content">
+                <a href="dashboard.html" class="back-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>العودة للرئيسية</span>
+                </a>
+                <div class="course-title">
+                    <h1><i class="fas fa-road"></i> خطة التعلم الكاملة</h1>
+                    <p class="section-subtitle">مسارك التعليمي المخصص من البداية حتى الاحتراف</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn-print" onclick="printRoadmap()">
+                        <i class="fas fa-print"></i>
+                    </button>
+                    <button class="btn-share" onclick="shareRoadmap()">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- إحصائيات سريعة -->
+        <div class="roadmap-stats-overview">
+            <div class="stat-overview">
+                <i class="fas fa-bullseye"></i>
+                <div>
+                    <h4>الهدف</h4>
+                    <p>مطور ويب محترف</p>
+                </div>
+            </div>
+            <div class="stat-overview">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <h4>الوقت المقدر</h4>
+                    <p>120 ساعة</p>
+                </div>
+            </div>
+            <div class="stat-overview">
+                <i class="fas fa-calendar"></i>
+                <div>
+                    <h4>المدة المتوقعة</h4>
+                    <p>3 أشهر</p>
+                </div>
+            </div>
+            <div class="stat-overview">
+                <i class="fas fa-chart-line"></i>
+                <div>
+                    <h4>التقدم الحالي</h4>
+                    <p>35%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- المراحل التعليمية -->
+        <section class="roadmap-stages-section">
+            <!-- المرحلة 1: أساسيات البرمجة -->
+            <div class="roadmap-stage-card" id="stage-1">
+                <div class="stage-header" onclick="toggleStage('stage-1')">
+                    <div class="stage-badge">
+                        <span>المرحلة 1</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="stage-title">
+                        <h2><i class="fas fa-rocket"></i> أساسيات البرمجة</h2>
+                        <p>بناء الأساس القوي في البرمجة - 4 أسابيع</p>
+                    </div>
+                    <div class="stage-progress-indicator">
+                        <div class="progress-circle" data-progress="75">
+                            <svg width="60" height="60">
+                                <circle class="progress-bg" cx="30" cy="30" r="27"></circle>
+                                <circle class="progress-bar" cx="30" cy="30" r="27"></circle>
+                            </svg>
+                            <span>75%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الكورسات داخل المرحلة -->
+                <div class="courses-container" id="courses-stage-1">
+                    <!-- كورس 1: HTML & CSS -->
+                    <div class="course-card" id="course-html-css">
+                        <div class="course-header" onclick="toggleCourse('stage-1', 'html-css')">
+                            <div class="course-icon">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <div class="course-info">
+                                <h3>HTML & CSS للمبتدئين</h3>
+                                <p>تعلم بناء وتصميم صفحات الويب - 100% مكتمل</p>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn-start-course" onclick="startCourse('stage-1', 'html-css')">
+                                    <i class="fas fa-play"></i>
+                                    بدء الكورس
+                                </button>
+                                <i class="fas fa-chevron-down course-toggle"></i>
+                            </div>
+                        </div>
+
+                        <!-- الدروس داخل الكورس -->
+                        <div class="lessons-container" id="lessons-html-css">
+                            <!-- درس 1 -->
+                            <div class="lesson-item completed">
+                                <div class="lesson-number">1</div>
+                                <div class="lesson-content">
+                                    <div class="lesson-header">
+                                        <h4>مقدمة إلى HTML</h4>
+                                        <span class="lesson-duration"><i class="fas fa-clock"></i> 30:15</span>
+                                    </div>
+                                    <p>تعلم أساسيات لغة HTML في 30 دقيقة</p>
+                                    <div class="lesson-meta">
+                                        <span class="lesson-status completed">مكتمل</span>
+                                        <div class="lesson-actions">
+                                            <button class="btn-review" onclick="openVideo('stage-1', 'html-css', 'html-basics')">
+                                                <i class="fas fa-redo"></i>
+                                                مراجعة
+                                            </button>
+                                            <button class="btn-notes">
+                                                <i class="fas fa-sticky-note"></i>
+                                                ملاحظات
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- درس 2 -->
+                            <div class="lesson-item completed">
+                                <div class="lesson-number">2</div>
+                                <div class="lesson-content">
+                                    <div class="lesson-header">
+                                        <h4>أساسيات CSS</h4>
+                                        <span class="lesson-duration"><i class="fas fa-clock"></i> 45:30</span>
+                                    </div>
+                                    <p>تصميم صفحات الويب باستخدام CSS</p>
+                                    <div class="lesson-meta">
+                                        <span class="lesson-status completed">مكتمل</span>
+                                        <div class="lesson-actions">
+                                            <button class="btn-review" onclick="openVideo('stage-1', 'html-css', 'css-fundamentals')">
+                                                <i class="fas fa-redo"></i>
+                                                مراجعة
+                                            </button>
+                                            <button class="btn-notes">
+                                                <i class="fas fa-sticky-note"></i>
+                                                ملاحظات
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- درس 3 -->
+                            <div class="lesson-item completed">
+                                <div class="lesson-number">3</div>
+                                <div class="lesson-content">
+                                    <div class="lesson-header">
+                                        <h4>التصميم المتجاوب</h4>
+                                        <span class="lesson-duration"><i class="fas fa-clock"></i> 42:30</span>
+                                    </div>
+                                    <p>جعل المواقع تعمل على جميع الأجهزة</p>
+                                    <div class="lesson-meta">
+                                        <span class="lesson-status completed">مكتمل</span>
+                                        <div class="lesson-actions">
+                                            <button class="btn-review" onclick="openVideo('stage-1', 'html-css', 'responsive-design')">
+                                                <i class="fas fa-redo"></i>
+                                                مراجعة
+                                            </button>
+                                            <button class="btn-notes">
+                                                <i class="fas fa-sticky-note"></i>
+                                                ملاحظات
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- كورس 2: JavaScript الأساسي -->
+                    <div class="course-card" id="course-javascript">
+                        <div class="course-header" onclick="toggleCourse('stage-1', 'javascript')">
+                            <div class="course-icon">
+                                <i class="fab fa-js-square"></i>
+                            </div>
+                            <div class="course-info">
+                                <h3>JavaScript الأساسي</h3>
+                                <p>ابدأ رحلتك في برمجة JavaScript - 50% مكتمل</p>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn-start-course" onclick="startCourse('stage-1', 'javascript')">
+                                    <i class="fas fa-play"></i>
+                                    استكمال الكورس
+                                </button>
+                                <i class="fas fa-chevron-down course-toggle"></i>
+                            </div>
+                        </div>
+
+                        <!-- الدروس داخل الكورس -->
+                        <div class="lessons-container" id="lessons-javascript">
+                            <!-- درس 1 -->
+                            <div class="lesson-item completed">
+                                <div class="lesson-number">1</div>
+                                <div class="lesson-content">
+                                    <div class="lesson-header">
+                                        <h4>مقدمة JavaScript</h4>
+                                        <span class="lesson-duration"><i class="fas fa-clock"></i> 1:05:20</span>
+                                    </div>
+                                    <p>تعلم البرمجة بلغة JavaScript</p>
+                                    <div class="lesson-meta">
+                                        <span class="lesson-status completed">مكتمل</span>
+                                        <div class="lesson-actions">
+                                            <button class="btn-review" onclick="openVideo('stage-1', 'javascript', 'js-intro')">
+                                                <i class="fas fa-redo"></i>
+                                                مراجعة
+                                            </button>
+                                            <button class="btn-notes">
+                                                <i class="fas fa-sticky-note"></i>
+                                                ملاحظات
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- درس 2 -->
+                            <div class="lesson-item">
+                                <div class="lesson-number">2</div>
+                                <div class="lesson-content">
+                                    <div class="lesson-header">
+                                        <h4>الدوال في JavaScript</h4>
+                                        <span class="lesson-duration"><i class="fas fa-clock"></i> 40:00</span>
+                                    </div>
+                                    <p>كيفية كتابة واستخدام الدوال</p>
+                                    <div class="lesson-meta">
+                                        <span class="lesson-status pending">قيد الانتظار</span>
+                                        <div class="lesson-actions">
+                                            <button class="btn-start" onclick="openVideo('stage-1', 'javascript', 'js-functions')">
+                                                <i class="fas fa-play"></i>
+                                                بدء الدرس
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- درس 3 -->
+                            <div class="lesson-item">
+                                <div class="lesson-number">3</div>
+                                <div class="lesson-content">
+                                    <div class="lesson-header">
+                                        <h4>المصفوفات في JavaScript</h4>
+                                        <span class="lesson-duration"><i class="fas fa-clock"></i> 35:45</span>
+                                    </div>
+                                    <p>كيفية التعامل مع المصفوفات</p>
+                                    <div class="lesson-meta">
+                                        <span class="lesson-status pending">قيد الانتظار</span>
+                                        <div class="lesson-actions">
+                                            <button class="btn-start" onclick="openVideo('stage-1', 'javascript', 'js-arrays')">
+                                                <i class="fas fa-play"></i>
+                                                بدء الدرس
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- كورس 3: Git & GitHub -->
+                    <div class="course-card" id="course-git">
+                        <div class="course-header" onclick="toggleCourse('stage-1', 'git')">
+                            <div class="course-icon">
+                                <i class="fab fa-git-alt"></i>
+                            </div>
+                            <div class="course-info">
+                                <h3>Git & GitHub</h3>
+                                <p>تعلم التحكم في الإصدارات والتعاون - 0% مكتمل</p>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn-start-course" onclick="startCourse('stage-1', 'git')">
+                                    <i class="fas fa-play"></i>
+                                    بدء الكورس
+                                </button>
+                                <i class="fas fa-chevron-down course-toggle"></i>
+                            </div>
+                        </div>
+
+                        <!-- الدروس داخل الكورس -->
+                        <div class="lessons-container" id="lessons-git">
+                            <!-- درس 1 -->
+                            <div class="lesson-item">
+                                <div class="lesson-number">1</div>
+                                <div class="lesson-content">
+                                    <div class="lesson-header">
+                                        <h4>مقدمة إلى Git</h4>
+                                        <span class="lesson-duration"><i class="fas fa-clock"></i> 1:20:00</span>
+                                    </div>
+                                    <p>أساسيات نظام التحكم في الإصدارات</p>
+                                    <div class="lesson-meta">
+                                        <span class="lesson-status pending">قيد الانتظار</span>
+                                        <div class="lesson-actions">
+                                            <button class="btn-start" onclick="openVideo('stage-1', 'git', 'git-basics')">
+                                                <i class="fas fa-play"></i>
+                                                بدء الدرس
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المرحلة 2: تطوير الويب المتقدم -->
+            <div class="roadmap-stage-card" id="stage-2">
+                <div class="stage-header" onclick="toggleStage('stage-2')">
+                    <div class="stage-badge">
+                        <span>المرحلة 2</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="stage-title">
+                        <h2><i class="fas fa-code"></i> تطوير الويب المتقدم</h2>
+                        <p>بناء تطبيقات ويب متقدمة - 8 أسابيع</p>
+                    </div>
+                    <div class="stage-progress-indicator">
+                        <div class="progress-circle" data-progress="20">
+                            <svg width="60" height="60">
+                                <circle class="progress-bg" cx="30" cy="30" r="27"></circle>
+                                <circle class="progress-bar" cx="30" cy="30" r="27"></circle>
+                            </svg>
+                            <span>20%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الكورسات داخل المرحلة -->
+                <div class="courses-container" id="courses-stage-2">
+                    <!-- كورس 1: React.js -->
+                    <div class="course-card" id="course-react">
+                        <div class="course-header" onclick="toggleCourse('stage-2', 'react')">
+                            <div class="course-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="course-info">
+                                <h3>React.js للمبتدئين</h3>
+                                <p>تعلم بناء واجهات مستخدم تفاعلية - 20% مكتمل</p>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn-start-course" onclick="startCourse('stage-2', 'react')">
+                                    <i class="fas fa-play"></i>
+                                    استكمال الكورس
+                                </button>
+                                <i class="fas fa-chevron-down course-toggle"></i>
+                            </div>
+                        </div>
+
+                        <!-- الدروس داخل الكورس -->
+                        <div class="lessons-container" id="lessons-react">
+                            <!-- درس 1 -->
+                            <div class="lesson-item completed">
+                                <div class="lesson-number">1</div>
+                                <div class="lesson-content">
+                                    <div class="lesson-header">
+                                        <h4>مقدمة إلى React</h4>
+                                        <span class="lesson-duration"><i class="fas fa-clock"></i> 55:00</span>
+                                    </div>
+                                    <p>تعلم أساسيات مكتبة React</p>
+                                    <div class="lesson-meta">
+                                        <span class="lesson-status completed">مكتمل</span>
+                                        <div class="lesson-actions">
+                                            <button class="btn-review" onclick="openVideo('stage-2', 'react', 'react-intro')">
+                                                <i class="fas fa-redo"></i>
+                                                مراجعة
+                                            </button>
+                                            <button class="btn-notes">
+                                                <i class="fas fa-sticky-note"></i>
+                                                ملاحظات
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- درس 2 -->
+                            <div class="lesson-item">
+                                <div class="lesson-number">2</div>
+                                <div class="lesson-content">
+                                    <div class="lesson-header">
+                                        <h4>مكونات React</h4>
+                                        <span class="lesson-duration"><i class="fas fa-clock"></i> 48:30</span>
+                                    </div>
+                                    <p>كيفية إنشاء وإدارة المكونات</p>
+                                    <div class="lesson-meta">
+                                        <span class="lesson-status pending">قيد الانتظار</span>
+                                        <div class="lesson-actions">
+                                            <button class="btn-start" onclick="openVideo('stage-2', 'react', 'react-components')">
+                                                <i class="fas fa-play"></i>
+                                                بدء الدرس
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- كورس 2: Node.js -->
+                    <div class="course-card" id="course-nodejs">
+                        <div class="course-header" onclick="toggleCourse('stage-2', 'nodejs')">
+                            <div class="course-icon">
+                                <i class="fab fa-node-js"></i>
+                            </div>
+                            <div class="course-info">
+                                <h3>Node.js الأساسي</h3>
+                                <p>بناء تطبيقات خادم باستخدام JavaScript - 0% مكتمل</p>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn-start-course" onclick="startCourse('stage-2', 'nodejs')">
+                                    <i class="fas fa-play"></i>
+                                    بدء الكورس
+                                </button>
+                                <i class="fas fa-chevron-down course-toggle"></i>
+                            </div>
+                        </div>
+
+                        <!-- الدروس داخل الكورس -->
+                        <div class="lessons-container" id="lessons-nodejs">
+                            <!-- درس 1 -->
+                            <div class="lesson-item">
+                                <div class="lesson-number">1</div>
+                                <div class="lesson-content">
+                                    <div class="lesson-header">
+                                        <h4>مقدمة إلى Node.js</h4>
+                                        <span class="lesson-duration"><i class="fas fa-clock"></i> 50:30</span>
+                                    </div>
+                                    <p>تعلم برمجة الخادم باستخدام JavaScript</p>
+                                    <div class="lesson-meta">
+                                        <span class="lesson-status pending">قيد الانتظار</span>
+                                        <div class="lesson-actions">
+                                            <button class="btn-start" onclick="openVideo('stage-2', 'nodejs', 'nodejs-intro')">
+                                                <i class="fas fa-play"></i>
+                                                بدء الدرس
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- المرحلة 3: مشاريع عملية -->
+            <div class="roadmap-stage-card" id="stage-3">
+                <div class="stage-header" onclick="toggleStage('stage-3')">
+                    <div class="stage-badge">
+                        <span>المرحلة 3</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="stage-title">
+                        <h2><i class="fas fa-briefcase"></i> مشاريع عملية</h2>
+                        <p>بناء مشاريع حقيقية وتطبيق المعرفة - 4 أسابيع</p>
+                    </div>
+                    <div class="stage-progress-indicator">
+                        <div class="progress-circle" data-progress="0">
+                            <svg width="60" height="60">
+                                <circle class="progress-bg" cx="30" cy="30" r="27"></circle>
+                                <circle class="progress-bar" cx="30" cy="30" r="27"></circle>
+                            </svg>
+                            <span>0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الكورسات داخل المرحلة -->
+                <div class="courses-container" id="courses-stage-3">
+                    <!-- مشروع 1: Portfolio -->
+                    <div class="course-card" id="course-portfolio">
+                        <div class="course-header" onclick="toggleCourse('stage-3', 'portfolio')">
+                            <div class="course-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class="course-info">
+                                <h3>مشروع Portfolio</h3>
+                                <p>بناء موقع شخصي احترافي - 0% مكتمل</p>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn-start-course" onclick="startCourse('stage-3', 'portfolio')">
+                                    <i class="fas fa-play"></i>
+                                    بدء المشروع
+                                </button>
+                                <i class="fas fa-chevron-down course-toggle"></i>
+                            </div>
+                        </div>
+
+                        <!-- الدروس داخل المشروع -->
+                        <div class="lessons-container" id="lessons-portfolio">
+                            <!-- درس 1 -->
+                            <div class="lesson-item">
+                                <div class="lesson-number">1</div>
+                                <div class="lesson-content">
+                                    <div class="lesson-header">
+                                        <h4>تخطيط المشروع</h4>
+                                        <span class="lesson-duration"><i class="fas fa-clock"></i> 35:20</span>
+                                    </div>
+                                    <p>تخطيط وتصميم الموقع الشخصي</p>
+                                    <div class="lesson-meta">
+                                        <span class="lesson-status pending">قيد الانتظار</span>
+                                        <div class="lesson-actions">
+                                            <button class="btn-start" onclick="openVideo('stage-3', 'portfolio', 'portfolio-planning')">
+                                                <i class="fas fa-play"></i>
+                                                بدء الدرس
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/roadmap.js"></script>
+</body>
+</html>

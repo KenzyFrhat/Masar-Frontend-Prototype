@@ -1,0 +1,1703 @@
+/* ===== PROGRESS CSS - الإحصائيات المتقدمة ===== */
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    line-height: 1.6;
+    direction: rtl;
+    overflow-x: hidden;
+}
+
+/* ===== SIDEBAR (نفس تصميم player.css) ===== */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+    color: white;
+    padding: 30px 0;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    overflow-y: auto;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.sidebar-header, .sidebar-menu, .sidebar-stats, .sidebar-footer {
+    padding: 0 25px;
+}
+
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.user-avatar-large {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-avatar-large i {
+    font-size: 40px;
+    color: white;
+}
+
+.user-info h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+.user-level {
+    background: rgba(255, 215, 0, 0.15);
+    color: #ffd700;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* القائمة الجانبية */
+.sidebar-menu {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.sidebar-menu li {
+    margin: 5px 0;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-right: 3px solid transparent;
+    border-radius: 10px;
+}
+
+.menu-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border-right-color: #667eea;
+}
+
+.menu-link.active {
+    background: rgba(102, 126, 234, 0.15);
+    color: white;
+    border-right-color: #667eea;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.menu-icon i {
+    font-size: 18px;
+}
+
+.menu-text {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.menu-badge {
+    background: #667eea;
+    color: white;
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* إحصائيات الـ Sidebar */
+.sidebar-stats {
+    padding: 20px 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.stat-item:last-child {
+    margin-bottom: 0;
+}
+
+.stat-icon {
+    width: 45px;
+    height: 45px;
+    background: rgba(102, 126, 234, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+}
+
+.stat-icon i {
+    color: #667eea;
+    font-size: 20px;
+}
+
+.stat-info h4 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.stat-info p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* زر تسجيل الخروج */
+.logout-btn {
+    width: 100%;
+    background: rgba(255, 71, 87, 0.1);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    color: #ff4757;
+    padding: 14px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Tajawal', sans-serif;
+    border: none;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 71, 87, 0.2);
+    transform: translateY(-2px);
+}
+
+/* زر القائمة للموبايل */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1100;
+    background: #667eea;
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+    background: #5a67d8;
+    transform: scale(1.1);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    margin-right: 280px;
+    min-height: 100vh;
+    transition: margin-right 0.3s ease;
+}
+
+/* ===== HEADER ===== */
+.main-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 40px;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    min-width: 180px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.page-title {
+    flex: 1;
+    text-align: center;
+}
+
+.page-title h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.page-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    min-width: 180px;
+    justify-content: flex-end;
+}
+
+.btn-export {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Tajawal', sans-serif;
+}
+
+/* ===== PROGRESS CSS - الجزء الثاني ===== */
+
+/* استكمال ملف progress.css */
+
+/* محتوى الصفحة */
+.progress-content {
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ===== نظرة سريعة ===== */
+.quick-overview-section {
+    margin-bottom: 40px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: #1e293b;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-title i {
+    color: #667eea;
+}
+
+.overview-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.overview-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.overview-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.overview-card.primary {
+    border-top: 4px solid #667eea;
+}
+
+.overview-card.success {
+    border-top: 4px solid #10b981;
+}
+
+.overview-card.warning {
+    border-top: 4px solid #f59e0b;
+}
+
+.overview-card.info {
+    border-top: 4px solid #06b6d4;
+}
+
+.overview-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+.overview-card.primary .overview-icon {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.overview-card.success .overview-icon {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.overview-card.warning .overview-icon {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+.overview-card.info .overview-icon {
+    background: rgba(6, 182, 212, 0.1);
+    color: #06b6d4;
+}
+
+.overview-content {
+    flex: 1;
+}
+
+.overview-content h3 {
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin: 0 0 8px;
+    font-weight: 700;
+}
+
+.overview-content p {
+    color: #64748b;
+    margin: 0 0 15px;
+    font-size: 0.95rem;
+}
+
+.overview-progress {
+    margin-top: 10px;
+}
+
+.progress-bar {
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+}
+
+.overview-card.primary .progress-fill {
+    background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.overview-card.success .progress-fill {
+    background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.overview-card.warning .progress-fill {
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.overview-card.info .progress-fill {
+    background: linear-gradient(90deg, #06b6d4, #0891b2);
+}
+
+.streak-info, .time-avg, .items-breakdown {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-top: 8px;
+}
+
+.streak-best {
+    color: #f59e0b;
+    font-weight: 600;
+}
+
+/* ===== الرسوم البيانية ===== */
+.charts-section {
+    margin-bottom: 40px;
+}
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.chart-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 380px;
+}
+
+.chart-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.chart-header h3 {
+    font-size: 1.2rem;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.chart-header h3 i {
+    color: #667eea;
+}
+
+.chart-actions {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 5px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.chart-actions:hover {
+    color: #64748b;
+    background: #f1f5f9;
+}
+
+.chart-container {
+    flex: 1;
+    position: relative;
+    min-height: 200px;
+}
+
+.chart-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.chart-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.positive {
+    color: #10b981;
+}
+
+.negative {
+    color: #ef4444;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+}
+
+/* ===== تحليل الأداء ===== */
+.performance-section {
+    margin-bottom: 40px;
+}
+
+.performance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.performance-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+}
+
+.performance-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.performance-card.strength {
+    border-top: 4px solid #10b981;
+}
+
+.performance-card.improvement {
+    border-top: 4px solid #f59e0b;
+}
+
+.performance-card.recommendation {
+    border-top: 4px solid #667eea;  
+}
+
+/* ===== ADVANCED PROGRESS DASHBOARD IMPROVEMENTS ===== */
+
+/* تحسينات متقدمة للـ Charts */
+.chart-container canvas {
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.05));
+    transition: filter 0.3s ease;
+}
+
+.chart-card:hover .chart-container canvas {
+    filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.1));
+}
+
+/* تلميحات Charts محسنة */
+.chartjs-tooltip {
+    background: rgba(30, 41, 59, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 10px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    padding: 12px 16px !important;
+    font-family: 'Tajawal', sans-serif !important;
+}
+
+.chartjs-tooltip-key {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+}
+
+/* تحسينات الـ Legends */
+.custom-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding: 15px;
+    background: rgba(248, 250, 252, 0.8);
+    border-radius: 12px;
+    margin-top: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.legend-item-enhanced {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.legend-item-enhanced:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.legend-dot::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 50%;
+    opacity: 0.3;
+}
+
+/* أنيميشن للـ Charts */
+@keyframes chartFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chart-card {
+    animation: chartFadeIn 0.6s ease-out;
+}
+
+.chart-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.chart-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.chart-card:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+/* تحسينات جدول النشاط */
+.activity-table-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.activity-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.activity-table thead {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.activity-table th {
+    padding: 18px 20px;
+    text-align: right;
+    font-weight: 600;
+    color: #475569;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.activity-table th::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 20px;
+    background: #e2e8f0;
+}
+
+.activity-table th:first-child::after {
+    display: none;
+}
+
+.activity-table tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+}
+
+.activity-table tbody tr:hover {
+    background: rgba(248, 250, 252, 0.8);
+    transform: translateX(-5px);
+}
+
+.activity-table td {
+    padding: 16px 20px;
+    color: #475569;
+}
+
+.activity-date, .activity-info, .activity-duration, 
+.activity-completion, .activity-score, .activity-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.activity-type {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.activity-type.video {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+}
+
+.activity-type.exercise {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.activity-type.community {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+.activity-type.review {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+}
+
+.activity-type.course {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8b5cf6;
+}
+
+.activity-type.quiz {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+.activity-type.notes {
+    background: rgba(6, 182, 212, 0.1);
+    color: #06b6d4;
+}
+
+.activity-type.project {
+    background: rgba(217, 119, 6, 0.1);
+    color: #d97706;
+}
+
+.completion-badge, .score-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    min-width: 60px;
+    text-align: center;
+}
+
+.completion-badge {
+    background: rgba(16, 185, 129, 0.1);
+    color: #065f46;
+}
+
+.score-badge {
+    background: rgba(102, 126, 234, 0.1);
+    color: #1e40af;
+}
+
+.score-badge.excellent {
+    background: rgba(16, 185, 129, 0.1);
+    color: #065f46;
+}
+
+.score-badge.good {
+    background: rgba(245, 158, 11, 0.1);
+    color: #92400e;
+}
+
+.score-badge.average {
+    background: rgba(59, 130, 246, 0.1);
+    color: #1e40af;
+}
+
+.score-badge.poor {
+    background: rgba(239, 68, 68, 0.1);
+    color: #991b1b;
+}
+
+.no-data {
+    color: #94a3b8;
+    font-style: italic;
+}
+
+.activity-actions {
+    gap: 8px;
+}
+
+.btn-action {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.btn-action.view {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+}
+
+.btn-action.repeat {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.btn-action:hover {
+    transform: scale(1.1);
+}
+
+/* تحسينات التوقعات الذكية */
+.predictions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.prediction-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.prediction-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transition: height 0.3s ease;
+}
+
+.prediction-card:hover::before {
+    height: 100%;
+    opacity: 0.03;
+}
+
+.prediction-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.prediction-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.prediction-header i {
+    font-size: 2rem;
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prediction-header h3 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 1.3rem;
+}
+
+.prediction-date {
+    font-size: 1.8rem;
+    color: #1e293b;
+    font-weight: 700;
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.prediction-progress {
+    position: relative;
+    z-index: 1;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.skill-level {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.current-level, .predicted-level {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.current-level span, .predicted-level span {
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.current-level strong, .predicted-level strong {
+    font-size: 1.2rem;
+    color: #1e293b;
+}
+
+.skill-meter {
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 20px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 5px;
+    transition: width 1s ease;
+}
+
+.skill-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #64748b;
+    position: relative;
+    z-index: 1;
+}
+
+.goal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.goal-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.goal-list li:last-child {
+    border-bottom: none;
+}
+
+.goal-list li i {
+    color: #667eea;
+    font-size: 1.1rem;
+}
+
+.prediction-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
+    position: relative;
+    z-index: 1;
+}
+
+.prediction-tip {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-style: italic;
+    display: block;
+    text-align: center;
+}
+
+.btn-set-goals {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.btn-set-goals:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* تحسينات الـ Performance Cards */
+.performance-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    flex: 1;
+}
+
+.performance-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.performance-list li:last-child {
+    border-bottom: none;
+}
+
+.performance-list li i {
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.strength .performance-list li i {
+    color: #10b981;
+}
+
+.improvement .performance-list li i {
+    color: #f59e0b;
+}
+
+.recommendation .performance-list li i {
+    color: #667eea;
+}
+
+.achievement .performance-list li i {
+    color: #8b5cf6;
+}
+
+.achievement-progress {
+    margin-top: 8px;
+}
+
+.performance-footer {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.insight-text {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-style: italic;
+    display: block;
+}
+
+.performance-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.performance-badge.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #065f46;
+}
+
+.performance-badge.warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: #92400e;
+}
+
+.performance-badge.info {
+    background: rgba(59, 130, 246, 0.1);
+    color: #1e40af;
+}
+
+.performance-badge.primary {
+    background: rgba(102, 126, 234, 0.1);
+    color: #3730a3;
+}
+
+/* تحسينات الـ Time Filter */
+.time-filter {
+    display: flex;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.filter-btn {
+    padding: 8px 20px;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.filter-btn.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Data Loader */
+.data-loader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(248, 250, 252, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-content i {
+    font-size: 3rem;
+    color: #667eea;
+    margin-bottom: 20px;
+    animation: spin 1.5s linear infinite;
+}
+
+.loader-content p {
+    font-size: 1.2rem;
+    color: #475569;
+}
+
+/* Modal تصدير البيانات */
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+    overflow: hidden;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    padding: 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.export-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.export-option {
+    position: relative;
+}
+
+.export-option input {
+    position: absolute;
+    opacity: 0;
+}
+
+.export-option label {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.export-option label:hover {
+    border-color: #c7d2fe;
+    background: #f8fafc;
+}
+
+.export-option input:checked + label {
+    border-color: #667eea;
+    background: rgba(102, 126, 234, 0.05);
+}
+
+.export-option label i {
+    font-size: 2rem;
+    color: #667eea;
+}
+
+.export-option label div {
+    flex: 1;
+}
+
+.export-option label h4 {
+    margin: 0 0 5px;
+    color: #1e293b;
+    font-size: 1.1rem;
+}
+
+.export-option label p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.export-period h4 {
+    margin: 0 0 12px;
+    color: #1e293b;
+    font-size: 1.1rem;
+}
+
+.period-options select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    color: #1e293b;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.period-options select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.modal-footer {
+    padding: 20px 25px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.btn-cancel, .btn-export-confirm {
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-cancel {
+    background: #e2e8f0;
+    color: #475569;
+}
+
+.btn-cancel:hover {
+    background: #cbd5e1;
+}
+
+.btn-export-confirm {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-export-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Custom Scrollbar */
+.activity-table-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.activity-table-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+.activity-table-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 100%);
+    border-radius: 10px;
+}
+
+.activity-table-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #a5b4fc 0%, #818cf8 100%);
+}
+
+/* تحسينات Responsive */
+@media (max-width: 1200px) {
+    .main-content {
+        margin-right: 0;
+    }
+    
+    .sidebar {
+        transform: translateX(100%);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .progress-content {
+        padding: 20px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .back-btn {
+        align-self: flex-start;
+        min-width: auto;
+    }
+    
+    .header-actions {
+        align-self: stretch;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .time-filter {
+        justify-content: center;
+    }
+    
+    .overview-cards, .chart-grid, .performance-grid, .predictions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-card {
+        height: 350px;
+    }
+    
+    .activity-table {
+        font-size: 0.85rem;
+    }
+    
+    .activity-table th,
+    .activity-table td {
+        padding: 12px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-header {
+        padding: 15px 20px;
+    }
+    
+    .page-title h1 {
+        font-size: 1.5rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .overview-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .overview-icon {
+        margin: 0 auto;
+    }
+    
+    .chart-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .performance-card {
+        min-height: auto;
+    }
+    
+    .prediction-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .skill-level {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 20px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .chart-card, .performance-card, .prediction-card, 
+    .overview-card, .activity-table-container {
+        background: #1e293b;
+        border-color: #334155;
+        color: #e2e8f0;
+    }
+    
+    .activity-table thead {
+        background: #0f172a;
+    }
+    
+    .activity-table th {
+        color: #cbd5e1;
+    }
+    
+    .overview-content h3, .performance-header h3,
+    .prediction-header h3, .chart-header h3 {
+        color: #e2e8f0;
+    }
+    
+    .overview-content p, .prediction-tip,
+    .insight-text, .stat-label, .legend-item span {
+        color: #94a3b8;
+    }
+    
+    .progress-bar, .skill-meter {
+        background: #334155;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .sidebar, .mobile-menu-toggle, .header-actions,
+    .activity-actions, .modal, .data-loader {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-right: 0 !important;
+    }
+    
+    .chart-card, .performance-card, .prediction-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+    
+    .overview-card {
+        border: 1px solid #ddd !important;
+    }
+}
+
