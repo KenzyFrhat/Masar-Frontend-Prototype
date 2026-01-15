@@ -1,6 +1,6 @@
-/* ===== ROADMAP CSS - متوافق مع player.css ===== */
+/* ===== ROADMAP CSS - نسخة محسنة ومتخصصة ===== */
 
-/* إعادة استخدام الأسس من player.css */
+/* إعادة تعيين الأسس */
 * {
     margin: 0;
     padding: 0;
@@ -9,13 +9,14 @@
 
 body {
     font-family: 'Tajawal', sans-serif;
-    background: #f8fafc;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     color: #1e293b;
     line-height: 1.6;
     direction: rtl;
+    min-height: 100vh;
 }
 
-/* ===== SIDEBAR (نفس تصميم player.css) ===== */
+/* ===== SIDEBAR - تصميم متوافق مع dashboard ===== */
 .sidebar {
     width: 280px;
     background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
@@ -28,7 +29,11 @@ body {
     overflow-y: auto;
     box-shadow: -5px 0 30px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed {
+    transform: translateX(280px);
 }
 
 .sidebar-header, .sidebar-menu, .sidebar-stats, .sidebar-footer {
@@ -53,6 +58,14 @@ body {
     justify-content: center;
     margin-bottom: 15px;
     border: 3px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-avatar-large:hover {
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
 }
 
 .user-avatar-large i {
@@ -77,6 +90,27 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+}
+
+/* شارة التخصص */
+.user-specialization {
+    margin-top: 10px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    color: white;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
 /* القائمة الجانبية */
@@ -245,10 +279,10 @@ body {
 
 /* ===== ROADMAP HEADER ===== */
 .main-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     color: white;
     padding: 20px 40px;
-    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -331,13 +365,31 @@ body {
     transform: scale(1.1);
 }
 
+/* ===== رسالة ترحيبية مخصصة ===== */
+.personalized-greeting {
+    text-align: center;
+    padding: 15px;
+    margin: 20px 40px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border-radius: 15px;
+    border: 2px solid #bae6fd;
+    color: #0369a1;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(3, 105, 161, 0.1);
+}
+
+.personalized-greeting i {
+    color: #0ea5e9;
+    margin: 0 8px;
+}
+
 /* ===== ROADMAP STATS OVERVIEW ===== */
 .roadmap-stats-overview {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
     padding: 30px;
-    padding-bottom: 0;
+    padding-bottom: 10px;
 }
 
 .stat-overview {
@@ -404,16 +456,23 @@ body {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e2e8f0;
+    border: 2px solid transparent;
     transition: all 0.3s ease;
 }
 
 .roadmap-stage-card:hover {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-color: #c7d2fe;
+    transform: translateY(-5px);
+}
+
+.roadmap-stage-card.active {
+    border-color: #6366f1;
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.15);
 }
 
 .stage-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     color: white;
     padding: 25px 30px;
     display: flex;
@@ -421,22 +480,42 @@ body {
     justify-content: space-between;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .stage-header:hover {
-    opacity: 0.95;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+}
+
+.stage-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.stage-header:hover::before {
+    transform: translateX(100%);
 }
 
 .stage-badge {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
     padding: 8px 20px;
     border-radius: 50px;
     font-weight: 600;
     font-size: 0.9rem;
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .stage-badge i {
@@ -517,8 +596,8 @@ body {
 }
 
 .courses-container.show {
-    padding: 20px;
-    max-height: 2000px;
+    padding: 25px;
+    max-height: 5000px;
 }
 
 /* Course Card */
@@ -625,17 +704,18 @@ body {
 
 .lessons-container.show {
     padding: 20px;
-    max-height: 2000px;
+    max-height: 3000px;
 }
 
 /* Lesson Item */
 .lesson-item {
-    background: #f8fafc;
-    border-radius: 10px;
+    background: white;
+    border-radius: 12px;
     padding: 15px;
     margin-bottom: 10px;
     display: flex;
     gap: 15px;
+    border: 1px solid #e2e8f0;
     border-right: 4px solid #e2e8f0;
     transition: all 0.3s ease;
 }
@@ -645,14 +725,17 @@ body {
 }
 
 .lesson-item.completed {
+    border-color: #10b981;
     border-right-color: #10b981;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
 }
 
 .lesson-item:hover {
     background: white;
-    border-color: #667eea;
+    border-color: #6366f1;
+    border-right-color: #6366f1;
     transform: translateX(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
 }
 
 .lesson-number {
@@ -755,6 +838,7 @@ body {
 
 .btn-review:hover {
     background: #bfdbfe;
+    transform: translateY(-2px);
 }
 
 .btn-notes {
@@ -764,15 +848,17 @@ body {
 
 .btn-notes:hover {
     background: #e9d5ff;
+    transform: translateY(-2px);
 }
 
 .btn-start {
-    background: #667eea;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     color: white;
 }
 
 .btn-start:hover {
-    background: #5a67d8;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    transform: translateY(-2px);
 }
 
 /* ===== ANIMATIONS ===== */
@@ -799,20 +885,14 @@ body {
     animation-delay: 0.2s;
 }
 
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
-    }
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.5); }
 }
 
-.stage-header:hover .stage-badge {
-    animation: pulse 2s infinite;
+.roadmap-stage-card.active .stage-header {
+    animation: glow 2s infinite;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -856,6 +936,12 @@ body {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
         padding: 20px;
+    }
+    
+    .personalized-greeting {
+        margin: 15px 20px;
+        padding: 12px;
+        font-size: 0.9rem;
     }
     
     .stage-header {
@@ -951,7 +1037,8 @@ body {
 /* ===== PRINT STYLES ===== */
 @media print {
     .sidebar, .mobile-menu-toggle, .header-actions, .btn-start-course,
-    .course-toggle, .lesson-actions, .stage-badge i {
+    .course-toggle, .lesson-actions, .stage-badge i,
+    .sidebar-toggle, .personalized-greeting {
         display: none !important;
     }
     
@@ -1038,4 +1125,3 @@ body {
 .lessons-container::-webkit-scrollbar-thumb:hover {
     background: #a5b4fc;
 }
-
