@@ -558,9 +558,21 @@
             </div>
         </div>
     </footer>-->
-
+     <script>
+    // إعدادات أولية
+        window.addEventListener('stateManagerReady', function(e) {
+            if (e.detail.success) {
+                console.log('✅ StateManager جاهز للاستخدام');
+                // يمكنك تنفيذ كود يعتمد على StateManager هنا
+            } else {
+                console.warn('⚠️ StateManager غير جاهز، استخدام البيانات المحلية');
+            }
+        });
+    </script>
     <!-- روابط JavaScript -->
     <script src="js/onboarding.js"></script>
+   
+     <script src="js/stateManager.js"></script>
 </body>
 
 </html>

@@ -60,8 +60,21 @@
             font-size: 20px;
             z-index: 10;
         }
+
+        
     </style>
+
+        <script>
+            // جعل StateManager متاحاً عالمياً
+            window.StateManager = {
+            // سيتم تحميله من stateManager.js
+            };
+        </script>
+        <!-- تحميل stateManager.js قبل dashboard.js -->
+        <script src="js/stateManager.js"></script>
+        <script src="js/dashboard.js"></script>
 </head>
+
 <body>
     <!-- شريط التنقل الجانبي -->
     <nav class="sidebar">
@@ -590,7 +603,19 @@
             <!-- محتوى الـ Roadmap التفصيلي سيتم إضافته بواسطة JavaScript -->
         </div>
     </div>
-     
+    <script>
+    // إعدادات أولية
+        window.addEventListener('stateManagerReady', function(e) {
+            if (e.detail.success) {
+                console.log('✅ StateManager جاهز للاستخدام');
+                // يمكنك تنفيذ كود يعتمد على StateManager هنا
+            } else {
+                console.warn('⚠️ StateManager غير جاهز، استخدام البيانات المحلية');
+            }
+        });
+    </script>
+    
     <script src="js/dashboard.js"></script>
+    <script src="js/stateManager.js"></script>
 </body>
 </html>

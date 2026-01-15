@@ -6,6 +6,7 @@
     <title>خطة التعلم الكاملة - مسار</title>
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/roadmap.css">
+    <script src="js/stateManager.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 </head>
@@ -622,7 +623,19 @@
             </div>
         </section>
     </main>
-
+    
+    <script>
+    // إعدادات أولية
+        window.addEventListener('stateManagerReady', function(e) {
+            if (e.detail.success) {
+                console.log('✅ StateManager جاهز للاستخدام');
+                // يمكنك تنفيذ كود يعتمد على StateManager هنا
+            } else {
+                console.warn('⚠️ StateManager غير جاهز، استخدام البيانات المحلية');
+            }
+        });
+    </script>
     <script src="js/roadmap.js"></script>
+    <script src="js/stateManager.js"></script>
 </body>
 </html>
