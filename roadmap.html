@@ -11,10 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
         /* زر إخفاء/إظهار الـ Sidebar */
+      /* في roadmap.css أو في الـ style في HTML */
         .sidebar-toggle {
             position: fixed;
-            top: 20px;
-            right: 310px;
+            top: 25px;
             z-index: 1001;
             background: #667eea;
             color: white;
@@ -30,19 +30,50 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
+
+        /* حالة الـ sidebar ظاهر */
+        .sidebar-toggle {
+            right: 290px; /* 280px + 10px padding */
+        }
+
+        /* حالة الـ sidebar مخفي */
+        .sidebar.collapsed ~ .sidebar-toggle {
+            right: 25px;
+        }
         
         .sidebar-toggle:hover {
             background: #5a67d8;
             transform: scale(1.1);
         }
         
+        /* تأثير الـ Sidebar */
+        .sidebar {
+            width: 280px;
+            transform: translateX(0);
+            transition: transform 0.3s ease, width 0.3s ease;
+        }
+        
         .sidebar.collapsed {
             transform: translateX(280px);
         }
         
-        .sidebar.collapsed + .main-content {
-            margin-right: 0;
+        /* المحتوى الرئيسي يتوسع */
+        .main-content {
+            margin-right: 280px;
+            transition: margin-right 0.3s ease, width 0.3s ease;
+            width: calc(100% - 280px);
         }
+        
+        .sidebar.collapsed ~ .main-content {
+            margin-right: 0;
+            width: 100%;
+        }
+        
+        .sidebar-toggle:hover {
+            background: #5a67d8;
+            transform: scale(1.1);
+        }
+        
         
         .sidebar.collapsed + .main-content .sidebar-toggle {
             right: 30px;
@@ -305,11 +336,13 @@
             </button>
         </div>
     </nav>
-
-    <!-- زر القائمة للموبايل -->
-    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-        <i class="fas fa-bars"></i>
+    
+    
+    <!-- زر إخفاء/إظهار الـ Sidebar - خارج الـ Sidebar -->
+    <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">
+        <i class="fas fa-chevron-right"></i>
     </button>
+
 
     <!-- المحتوى الرئيسي -->
     <main class="main-content" id="mainContent">

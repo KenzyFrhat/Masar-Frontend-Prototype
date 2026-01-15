@@ -1125,3 +1125,196 @@ body {
 .lessons-container::-webkit-scrollbar-thumb:hover {
     background: #a5b4fc;
 }
+
+
+
+/* ===== ROADMAP CSS - نسخة محسنة ===== */
+
+/* إعادة تعيين الأسس */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    color: #1e293b;
+    line-height: 1.6;
+    direction: rtl;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ===== SIDEBAR - تصميم متحرك ===== */
+
+
+
+/* ===== MAIN CONTENT - يتوسع عند إخفاء الـ Sidebar ===== */
+.main-content {
+    margin-right: 280px;
+    min-height: 100vh;
+    transition: margin-right 0.3s ease, padding 0.3s ease;
+    padding: 20px;
+    width: calc(100% - 280px);
+}
+
+.sidebar.collapsed ~ .main-content {
+    margin-right: 0;
+    width: 100%;
+    padding: 20px;
+}
+
+/* ===== تحسينات للواجهة عندما يكون الـ Sidebar مخفياً ===== */
+.sidebar.collapsed ~ .main-content .main-header {
+    margin-left: 0;
+    width: 100%;
+}
+
+.sidebar.collapsed ~ .main-content .roadmap-stats-overview {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.sidebar.collapsed ~ .main-content .roadmap-stage-card {
+    max-width: 100%;
+}
+
+/* ===== ROADMAP HEADER ===== */
+.main-header {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    padding: 20px 40px;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+    border-radius: 15px;
+    margin-bottom: 25px;
+    width: 100%;
+    transition: width 0.3s ease;
+}
+
+/* ===== تحسين المراحل عندما يكون هناك مساحة أكبر ===== */
+.sidebar.collapsed ~ .main-content .roadmap-stages-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+.sidebar.collapsed ~ .main-content .roadmap-stage-card {
+    max-width: 100%;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+    .sidebar {
+        transform: translateX(100%);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-right: 0;
+        width: 100%;
+    }
+    
+    .sidebar-toggle {
+        right: 25px !important;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 15px;
+    }
+    
+    .main-header {
+        padding: 15px 20px;
+        margin-bottom: 20px;
+    }
+    
+    .roadmap-stats-overview {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .roadmap-stages-section {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .roadmap-stats-overview {
+        grid-template-columns: 1fr;
+    }
+    
+    .main-header {
+        padding: 15px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .back-btn {
+        align-self: center;
+    }
+    
+    .header-actions {
+        align-self: center;
+    }
+}
+
+/* ===== أنماط إضافية لتوسيع المحتوى ===== */
+.sidebar.collapsed ~ .main-content .roadmap-stats-overview .stat-overview {
+    padding: 25px;
+}
+
+.sidebar.collapsed ~ .main-content .roadmap-stage-card .stage-header {
+    padding: 30px;
+}
+
+.sidebar.collapsed ~ .main-content .course-header {
+    padding: 25px;
+}
+
+.sidebar.collapsed ~ .main-content .lesson-item {
+    padding: 20px;
+}
+
+/* ===== تأثيرات انتقال سلسة ===== */
+.roadmap-stats-overview,
+.roadmap-stage-card,
+.course-card,
+.lesson-item {
+    transition: all 0.3s ease;
+}
+
+.sidebar.collapsed ~ .main-content .roadmap-stats-overview:hover,
+.sidebar.collapsed ~ .main-content .roadmap-stage-card:hover,
+.sidebar.collapsed ~ .main-content .course-card:hover,
+.sidebar.collapsed ~ .main-content .lesson-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+.sidebar.collapsed {
+    transform: translateX(280px);
+     visibility: hidden;
+}
+
+
+.sidebar:not(.collapsed) {
+    transform: translateX(0);
+    visibility: visible;
+}
