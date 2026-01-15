@@ -1,4 +1,13 @@
-document.addEventListener('DOMContentLoaded', function() {
+import StateManager from './stateManager.js';
+
+(function() {
+    'use strict';
+    
+    // تأكد من وجود StateManager
+    if (typeof StateManager === 'undefined') {
+        console.error('StateManager غير موجود. تأكد من تحميل stateManager.js قبل dashboard.js');
+        return;
+    }
     // بيانات المراحل والكورسات
     const learningData = {
         stages: [
@@ -180,18 +189,144 @@ function initDashboard() {
     calculateStatistics();
     initProgressCircles(); // ← أضف هذا السطر
     updateProgressIndicator(); // ← أضف هذا السطر
+     loadProgressFromStateManager();
 }
 
-    // تحميل بيانات المستخدم
-    function loadUserData() {
-        const userAnswers = JSON.parse(localStorage.getItem('masarUserAnswers')) || {};
-        
-        const userName = localStorage.getItem('masarUserName') || 'كريم';
-        document.getElementById('userName').textContent = userName;
-        document.getElementById('greetingName').textContent = userName;
 
-        setGreeting();
+    // تحميل بيانات المستخدم
+   // ===== LOAD USER DATA FROM STATEMANAGER =====
+    function loadUserData() {
+        try {
+            const userData = StateManager.getUser();
+            const onboardingData = StateManager.getOnboarding();
+            const progressData = StateManager.getProgress();
+            
+            const userName = userData.name || 'كريم';
+            
+            // تحديث عناصر الاسم
+            const userNameElements = [
+                document.getElementById('userName'),
+                document.getElementById('greetingName'),
+                document.getElementById('dashboardUserName')
+            ];
+            
+            userNameElements.forEach(el => {
+                if (el) el.textContent = userName;
+            });
+            
+            setGreeting();
+            
+            // إذا كان هناك بيانات تسجيل، استخدمها
+            if (onboardingData && onboardingData.completed) {
+                console.log('تم تحميل بيانات التسجيل:', onboardingData);
+            }
+            
+            // تحديث الإحصائيات من progressData
+            if (progressData) {
+                updateStatsFromProgress(progressData);
+            }
+            
+        } catch (error) {
+            console.error('خطأ في تحميل بيانات المستخدم:', error);
+            // استخدم البيانات الافتراضية
+            document.getElementById('greetingName').textContent = 'كريم';
+            document.getElementById('dashboardUserName').textContent = 'مرحباً، كريم';
+        }
     }
+
+     function updateStatsFromProgress(progressData) {
+        // يمكنك تحديث الإحصائيات من بيانات StateManager
+        if (progressData.totalHours) {
+            document.getElementById('totalHours').textContent = Math.round(progressData.totalHours);
+            document.getElementById('totalHoursSidebar').textContent = Math.round(progressData.totalHours);
+        }
+        
+        if (progressData.streak) {
+            document.getElementById('streakDays').textContent = progressData.streak;
+        }
+    }
+    
+    // ===== LOAD PROGRESS FROM STATEMANAGER =====
+    function loadProgressFromStateManager() {
+        const progressData = StateManager.getProgress();
+        
+        if (progressData && progressData.lessons) {
+            // تحديث حالة الدروس في learningData بناءً على StateManager
+            learningData.stages.forEach(stage => {
+                stage.courses.forEach(course => {
+                    course.lessons.forEach(lesson => {
+                        if (progressData.lessons[lesson.id]) {
+                            lesson.completed = progressData.lessons[lesson.id].completed || false;
+                        }
+                    });
+                });
+            });
+            
+            // إعادة حساب التقدم
+            calculateStatistics();
+            
+            // إعادة تحميل المراحل لتظهر الحالة المحدثة
+            loadStages();
+        }
+    }
+    
+    // ===== UPDATE LESSON COMPLETION =====
+    function updateLessonCompletion(lessonId, completed = true) {
+        // تحديث في StateManager
+        StateManager.updateLessonProgress(lessonId, completed);
+        
+        // تحديث في learningData المحلي
+        learningData.stages.forEach(stage => {
+            stage.courses.forEach(course => {
+                course.lessons.forEach(lesson => {
+                    if (lesson.id === lessonId) {
+                        lesson.completed = completed;
+                    }
+                });
+            });
+        });
+        
+        // إعادة حساب الإحصائيات
+        calculateStatistics();
+        updateProgressIndicator();
+        
+        // إعادة رسم الدروس المتأثرة
+        updateLessonUI(lessonId, completed);
+    }
+    
+    function updateLessonUI(lessonId, completed) {
+        const lessonElement = document.querySelector(`[data-lesson="${lessonId}"]`);
+        if (lessonElement) {
+            if (completed) {
+                lessonElement.classList.add('completed');
+                // تحديث الزر
+                const button = lessonElement.querySelector('.watch-btn');
+                if (button) {
+                    button.innerHTML = '<i class="fas fa-play"></i> شاهد مرة أخرى';
+                }
+                
+                // تحديث الأيقونة
+                const icon = lessonElement.querySelector('.fa-play-circle');
+                if (icon) {
+                    icon.classList.remove('primary');
+                    icon.classList.add('success', 'fa-check-circle');
+                }
+            }
+        }
+    }
+    
+    // ===== LOGGING TIME =====
+    function logLearningTime(minutes) {
+        StateManager.logLearningTime(minutes);
+        
+        // تحديث الواجهة مباشرة
+        const progressData = StateManager.getProgress();
+        if (progressData) {
+            document.getElementById('totalHours').textContent = Math.round(progressData.totalHours);
+            document.getElementById('totalHoursSidebar').textContent = Math.round(progressData.totalHours);
+        }
+    }
+
 
     // دالة لتحميل بيانات المستخدم في الـ Sidebar
 function loadUserDataInSidebar() {
@@ -367,46 +502,56 @@ function loadUserDataInSidebar() {
     };
 
    // دالة فتح مشغل الفيديو من Dashboard
-window.openVideoPlayer = function(stageId, courseId, lessonId) {
-    // البحث عن بيانات الدرس
-    const stage = learningData.stages.find(s => s.id === stageId);
-    if (!stage) return;
-    
-    const course = stage.courses.find(c => c.id === courseId);
-    if (!course) return;
-    
-    const lesson = course.lessons.find(l => l.id === lessonId);
-    if (!lesson) return;
-    
-    // حفظ بيانات الجلسة
-    const sessionData = {
-        stage: {
-            id: stage.id,
-            title: stage.title,
-            number: stage.number
-        },
-        course: {
-            id: course.id,
-            title: course.title,
-            description: course.description,
-            icon: course.icon
-        },
-        lesson: lesson,
-        courseLessons: course.lessons,
-        currentLessonIndex: course.lessons.findIndex(l => l.id === lessonId)
+ // ===== OPEN VIDEO PLAYER (UPDATED) =====
+    window.openVideoPlayer = function(stageId, courseId, lessonId) {
+        // البحث عن بيانات الدرس
+        const stage = learningData.stages.find(s => s.id === stageId);
+        if (!stage) return;
+        
+        const course = stage.courses.find(c => c.id === courseId);
+        if (!course) return;
+        
+        const lesson = course.lessons.find(l => l.id === lessonId);
+        if (!lesson) return;
+        
+        // تسجيل بدء الدرس (لكن ليس كمكتمل بعد)
+        StateManager.updateLessonProgress(lessonId, false);
+        
+        // حساب مدة الدرس
+        const durationParts = lesson.duration.split(':');
+        const minutes = parseInt(durationParts[0]) || 0;
+        StateManager.logLearningTime(minutes);
+        
+        // حفظ بيانات الجلسة
+        const sessionData = {
+            stage: {
+                id: stage.id,
+                title: stage.title,
+                number: stage.number
+            },
+            course: {
+                id: course.id,
+                title: course.title,
+                description: course.description,
+                icon: course.icon
+            },
+            lesson: lesson,
+            courseLessons: course.lessons,
+            currentLessonIndex: course.lessons.findIndex(l => l.id === lessonId),
+            startTime: new Date().toISOString()
+        };
+        
+        // حفظ في localStorage
+        localStorage.setItem('currentVideoSession', JSON.stringify(sessionData));
+        
+        // إظهار رسالة تحميل
+        showLoadingMessage('جاري فتح مشغل الفيديو...');
+        
+        // الانتقال بعد تأخير قصير
+        setTimeout(() => {
+            window.location.href = 'course-player.html';
+        }, 500);
     };
-    
-    // حفظ في localStorage
-    localStorage.setItem('currentVideoSession', JSON.stringify(sessionData));
-    
-    // إظهار رسالة تحميل
-    showLoadingMessage('جاري فتح مشغل الفيديو...');
-    
-    // الانتقال بعد تأخير قصير
-    setTimeout(() => {
-        window.location.href = 'course-player.html';
-    }, 500);
-};
 
 // دالة لإظهار رسالة تحميل
 function showLoadingMessage(message) {
@@ -762,13 +907,21 @@ function setupMobileMenu() {
 
     // تسجيل الخروج
     window.logout = function() {
-        if (confirm('هل تريد تسجيل الخروج؟')) {
-            localStorage.removeItem('masarUserAnswers');
-            localStorage.removeItem('masarOnboardingCompleted');
-            window.location.href = 'index.html';
-        }
+        if (confirm("هل أنت متأكد من تسجيل الخروج؟")) {
+        StateManager.logout();
+        window.location.href = 'index.html';
+    }
+
     };
 
     // البدء
     initDashboard();
-});
+      document.addEventListener('DOMContentLoaded', initDashboard);
+    
+    // جعل الدوال متاحة عالمياً
+    window.toggleCourse = toggleCourse;
+    window.showRoadmapModal = showRoadmapModal;
+    window.closeRoadmap = closeRoadmap;
+    window.startLearning = startLearning;
+
+})();
